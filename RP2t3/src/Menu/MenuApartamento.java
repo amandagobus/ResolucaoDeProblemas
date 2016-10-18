@@ -36,8 +36,8 @@ public class MenuApartamento {
             System.out.println("4) Excluir");
             System.out.println("0) Sair ");
             System.out.println(" ");
-            System.out.print("Opção: ");
-            opcao = entrada.nextInt();
+
+            opcao = inInt("Opção: ");
             entrada.nextLine();
             switch (opcao) {
                 case 0:
@@ -83,7 +83,6 @@ public class MenuApartamento {
         System.out.print("Digite o Logradouro:  ");
         logradouro = entrada.nextLine();
 
-       
         numero = inInt("Digite o numero: ");
         entrada.nextLine();
 
@@ -96,36 +95,30 @@ public class MenuApartamento {
         System.out.print("Digite Uma Descrição:  ");
         descricao = entrada.nextLine();
 
-       
         areaTotal = inDouble("Digite a Área Total:  ");
         entrada.nextLine();
 
-        
         valor = inDouble("Digite o Valor do Imóvel:  ");
         entrada.nextLine();
 
         System.out.print("Digite o Nome do Edifício:  ");
         nomeEdificio = entrada.nextLine();
 
-       
         numeroQuartos = inInt("Digite o Número de Quartos:  ");
         entrada.nextLine();
 
         numeroVagas = inInt("Digite o Número de Vagas na garagem:  ");
         entrada.nextLine();
 
-        
         anoDeConstrucao = inInt("Digite o Ano de Construção:  ");
         entrada.nextLine();
 
-        numeroDoApartamento =inInt("Digite o Número do Apartamento:  ");
+        numeroDoApartamento = inInt("Digite o Número do Apartamento:  ");
         entrada.nextLine();
 
-        
         andar = inInt("Digite o Número do Andar:  ");
         entrada.nextLine();
 
-        
         valorCondominio = inDouble("Digite o Valor do Condominio:  ");
         entrada.nextLine();
         System.out.println("=======================================");
@@ -269,8 +262,6 @@ public class MenuApartamento {
         int codigo = entrada.nextInt();
         entrada.nextLine();
         lista.excluir(codigo);
-        
-       
 
     }
 }
