@@ -32,7 +32,16 @@ import java.util.logging.Logger;
 public class ListaDeImoveis implements ListaImoveis {
 
     List<Imovel> lista = new ArrayList<>();
-
+     private String tipo;
+     
+    public void setTipo(String tipo){
+    this.tipo = tipo;
+    }
+    
+    public String getTipo(){
+    return tipo;
+    
+    }
     @Override
     public boolean incluir(Imovel im) {
         lista.add(im);
