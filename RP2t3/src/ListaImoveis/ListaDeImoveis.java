@@ -88,16 +88,35 @@ public class ListaDeImoveis implements ListaImoveis {
     public List<Imovel> ordenarArea() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    /**
+     * Metodo que pesquisa um Imovel pelo valor
+     * @param bairro, inoformado pelo usuario
+     * @return uma lista de Imóvel, cujo valor seja menor ou igual ao valor 
+     * informado
+     */
     @Override
     public List<Imovel> pesquisaValor(double valor) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Imovel> l = new ArrayList<>();
+        for (Imovel imovel : lista) {
+            if(imovel.getValor()<= valor)
+                l.add(imovel);
+        }return l;
     }
 
+    /**
+     * Metodo que pesquisa um Imovel pelo bairro
+     * @param bairro, inoformado pelo usuario
+     * @return uma lista de Imóvel
+     */
     @Override
     public List<Imovel> pesquisaBairro(String bairro) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Imovel> l = new ArrayList<>();
+        for (Imovel imovel : lista) {
+            if(imovel.getBairro().contains(bairro))
+                l.add(imovel);
+        }return l;
+        
+   }
 
     
     @Override
