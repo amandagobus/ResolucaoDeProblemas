@@ -10,7 +10,10 @@ import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,6 +59,16 @@ public class MenuApartamento {
                     break;
             }
         } while (opcao != 0);
+
+    }
+
+    public void Carregar() {
+
+        try {
+            lista.ler();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -129,6 +142,11 @@ public class MenuApartamento {
                 numeroVagas, numeroQuartos);
 
         boolean objeto = lista.incluir(apartamento);
+        try {
+            lista.escreverArquivo();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.println("\n\n");
         if (objeto == true) {
             System.out.println("Imóvel incluido com sucesso.");
@@ -252,9 +270,16 @@ public class MenuApartamento {
                     break;
 
             }
-            lista.editar(codigo, apartamento);
-        }
+               lista.editar(codigo, apartamento);
+            //arrumar
 
+            try {
+                lista.escreverArquivo();
+            } catch (Exception ex) {
+                Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
     }
 
     public void Excluir() {

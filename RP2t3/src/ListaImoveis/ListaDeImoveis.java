@@ -136,7 +136,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Apartamento.csv"));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
@@ -386,6 +386,52 @@ public class ListaDeImoveis implements ListaImoveis {
             ler.close();
             arquivo.close();
             return true;
+
+        }
+        return false;
+    }
+
+    public boolean gravarApartamento() {
+
+        try {
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Apartamento.csv"));
+            BufferedWriter escrever = new BufferedWriter(outFile);
+            Imovel mo = lista.get(0);
+            escrever.write(mo.toFileTitulo());
+            escrever.write("\r\n");
+
+            for (Imovel imovel : lista) {
+                escrever.write(imovel.toFile());
+                escrever.write("\r\n");
+            }
+            escrever.close();
+            outFile.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+
+    public boolean gravarCasa() {
+
+        try {
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Casa.csv"));
+            BufferedWriter escrever = new BufferedWriter(outFile);
+            Imovel mo = lista.get(0);
+            escrever.write(mo.toFileTitulo());
+            escrever.write("\r\n");
+
+            for (Imovel imovel : lista) {
+                escrever.write(imovel.toFile());
+                escrever.write("\r\n");
+            }
+            escrever.close();
+            outFile.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return false;

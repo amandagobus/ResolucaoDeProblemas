@@ -12,6 +12,8 @@ import Casa.Casa;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import Imovel.Tipo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,7 +84,6 @@ public class MenuCasa {
         System.out.print("Digite o Logradouro:  ");
         logradouro = entrada.nextLine();
 
-        
         numero = inInt("Digite o Número:  ");
         entrada.nextLine();
 
@@ -95,26 +96,22 @@ public class MenuCasa {
         System.out.print("Digite Uma Descrição:  ");
         descricao = entrada.nextLine();
 
-       
         areaTotal = inDouble("Digite a Área Total:  ");
         entrada.nextLine();
 
         valor = inDouble("Digite o Valor do Imóvel:  ");
         entrada.nextLine();
 
-       
         areaConstruida = inDouble("Digite a Área Construída:  ");
         entrada.nextLine();
 
-       
         numeroQuartos = inInt("Digite o Número de Quartos:  ");
         entrada.nextLine();
 
-        numeroDeVagas =inInt("Digite o Número de Vagas na garagem:  ");
+        numeroDeVagas = inInt("Digite o Número de Vagas na garagem:  ");
         entrada.nextLine();
 
-      
-        anoConstrucao =inInt("Digite o Ano de Construção:  ");
+        anoConstrucao = inInt("Digite o Ano de Construção:  ");
         entrada.nextLine();
 
         System.out.println("Digite o Tipo do Imóvel: ");
@@ -127,6 +124,11 @@ public class MenuCasa {
         System.out.println("=======================================");
 
         boolean objeto = lista.incluir(casa);
+        try {
+            lista.escreverArquivo();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         System.out.println("\n\n");
         if (objeto == true) {
@@ -251,8 +253,13 @@ public class MenuCasa {
 
             }
             lista.editar(codigo, casa);
+            try {
+                lista.escreverArquivo();
+            } catch (Exception ex) {
+                Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
 
     }
-
 }
