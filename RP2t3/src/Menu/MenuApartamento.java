@@ -65,7 +65,7 @@ public class MenuApartamento {
     public void Carregar() {
 
         try {
-            lista.ler();
+            lista.lerApartamento();
         } catch (IOException ex) {
             Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,7 +143,7 @@ public class MenuApartamento {
 
         boolean objeto = lista.incluir(apartamento);
         try {
-            lista.escreverArquivo();
+            lista.gravarApartamento();
         } catch (Exception ex) {
             Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,6 +159,7 @@ public class MenuApartamento {
      * Método que consulta o imóvel por código
      */
     public void Consultar() {
+        
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
@@ -270,11 +271,11 @@ public class MenuApartamento {
                     break;
 
             }
-               lista.editar(codigo, apartamento);
+            lista.editar(codigo, apartamento);
             //arrumar
 
             try {
-                lista.escreverArquivo();
+                lista.gravarApartamento();
             } catch (Exception ex) {
                 Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
             }
