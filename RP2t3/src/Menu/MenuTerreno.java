@@ -5,23 +5,27 @@
  */
 package Menu;
 
+import static Imovel.EntradasTeclado.inDouble;
+import static Imovel.EntradasTeclado.inInt;
+import static Imovel.EntradasTeclado.inString;
 import java.util.Scanner;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
 import Terreno.Terreno;
 
 /**
- * Classe que reune os principais metodos de funcionabilidade dos objetos salvos no sistema.
- * 
+ * Classe que reune os principais metodos de funcionabilidade dos objetos salvos
+ * no sistema.
+ *
  * @author Julielen
  */
 public class MenuTerreno {
-    
+
     ListaDeImoveis lista = new ListaDeImoveis();
     Scanner entrada = new Scanner(System.in);
-    
+
     public static void menu() {
-        
+
         System.out.println(" \n");
         System.out.println("***** Menu *****\n");
         System.out.println("[1] Novo Imóvel Terreno ");
@@ -31,9 +35,8 @@ public class MenuTerreno {
         System.out.println("[0] Voltar ");
         System.out.println(" ");
         System.out.print("Opção:    ");
-        }
-        
- 
+    }
+
     public static void menu2() {
         System.out.println(" \n");
         System.out.println("*************** MENU DE CONSULTA *****************");
@@ -44,7 +47,7 @@ public class MenuTerreno {
         System.out.print("Opção:     ");
 
     }
-    
+
     /**
      * Metodo que faz a interação com o usuário
      */
@@ -59,71 +62,56 @@ public class MenuTerreno {
         double valor;
         double dimensaoFrente;
         double dimensaoLado;
-        
-        System.out.println("Digite o Logradouro:  ");
-        logradouro = entrada.nextLine();
 
-        System.out.println("Digite o Número:  ");
-        numero = entrada.nextInt();
-        entrada.nextLine();
+        logradouro = inString("Digite o Logradouro:  ");
 
-        System.out.println("Digite o Bairro:  ");
-        bairro = entrada.nextLine();
+        numero = inInt("Digite o numero: ");
 
-        System.out.println("Digite a Cidade:  ");
-        cidade = entrada.nextLine();
+        bairro = inString("Digite o Bairro:  ");
 
-        System.out.println("Digite Uma Descrição:  ");
-        descricao = entrada.nextLine();
+        cidade = inString("Digite a Cidade:  ");
 
-        System.out.println("Digite a Aréa Total:  ");
-        areaTotal = entrada.nextDouble();
-        entrada.nextLine();
+        descricao = inString("Digite Uma Descrição:  ");
 
-        System.out.println("Digite o Valor do Imovél:  ");
-        valor = entrada.nextDouble();
-        entrada.nextLine();
-        
-        System.out.println("Digite a Dimensão Frente:  ");
-        dimensaoFrente = entrada.nextDouble();
-        entrada.nextLine();
-        
-        System.out.println("Digite a Dimensão Lado:  ");
-        dimensaoLado = entrada.nextDouble();
-        entrada.nextLine();
-        
+        areaTotal = inDouble("Digite a Área Total:  ");
+
+        valor = inDouble("Digite o Valor do Imóvel:  ");
+
+        dimensaoFrente = inDouble("Digite a Dimensão Frente: ");
+
+        dimensaoLado = inDouble("Digite a Dimensão Lado: ");
+
         Imovel Terreno = new Terreno(logradouro, numero, bairro, cidade,
                 descricao, areaTotal, valor, dimensaoFrente, dimensaoLado);
-        
+
         boolean objeto = lista.incluir(Terreno);
-        
-        if(objeto == true){
+
+        if (objeto == true) {
             System.out.println("Imóvel incluído com sucesso.");
-        }else{
-            System.out.println("Imóvel não foi incluído.");     
+        } else {
+            System.out.println("Imóvel não foi incluído.");
         }
     }
-    
+
     /**
-     * Método que recebe uma informação do usuario, e consulta por código se o objeto esta
-     * na listaImoveis.
+     * Método que recebe uma informação do usuario, e consulta por código se o
+     * objeto esta na listaImoveis.
      */
     public void Consultar() {
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
 
-        if ((Imo != null)&&(Imo instanceof Terreno) ) {
+        if ((Imo != null) && (Imo instanceof Terreno)) {
             System.out.println("=======================================");
             System.out.println(Imo.toString());
 
         } else if (Imo == null) {
-            System.out.println("Imovél Não Cadastrado;");
-            
-            
+            System.out.println("Imóvel Não Cadastrado;");
+
         }
     }
-    
+
     public void menuInicial() {
         int i;
 
@@ -175,6 +163,6 @@ public class MenuTerreno {
 
         } while (i != 0);
 
-        }
-        
     }
+
+}
