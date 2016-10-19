@@ -39,7 +39,7 @@ public class RP2T3 {
             System.out.println(" ");
             
             op =inInt("Opção: ");
-            entrada.hasNextLine();
+          
 
             switch (op) {
                 case (1):

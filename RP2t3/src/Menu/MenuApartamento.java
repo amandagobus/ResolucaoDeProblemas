@@ -8,6 +8,7 @@ package Menu;
 import Apartamento.Apartamento;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
+import static Imovel.EntradasTeclado.inString;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class MenuApartamento {
             System.out.println(" ");
 
             opcao = inInt("Opção: ");
-            entrada.nextLine();
+
             switch (opcao) {
                 case 0:
                     break;
@@ -93,47 +94,35 @@ public class MenuApartamento {
         double valorCondominio;
 
         System.out.println("=======================================");
-        System.out.print("Digite o Logradouro:  ");
-        logradouro = entrada.nextLine();
 
+        logradouro = inString("Digite o Logradouro:  ");
+        
         numero = inInt("Digite o numero: ");
-        entrada.nextLine();
-
-        System.out.print("Digite o Bairro:  ");
-        bairro = entrada.nextLine();
-
-        System.out.print("Digite a Cidade:  ");
-        cidade = entrada.nextLine();
-
-        System.out.print("Digite Uma Descrição:  ");
-        descricao = entrada.nextLine();
-
+        
+        bairro = inString("Digite o Bairro:  ");
+        
+        cidade = inString("Digite a Cidade:  ");
+        
+        descricao = inString("Digite Uma Descrição:  ");
+        
         areaTotal = inDouble("Digite a Área Total:  ");
-        entrada.nextLine();
-
+        
         valor = inDouble("Digite o Valor do Imóvel:  ");
-        entrada.nextLine();
-
-        System.out.print("Digite o Nome do Edifício:  ");
-        nomeEdificio = entrada.nextLine();
-
+        
+        nomeEdificio = inString("Digite o Nome do Edifício:  ");
+        
         numeroQuartos = inInt("Digite o Número de Quartos:  ");
-        entrada.nextLine();
-
+        
         numeroVagas = inInt("Digite o Número de Vagas na garagem:  ");
-        entrada.nextLine();
-
+        
         anoDeConstrucao = inInt("Digite o Ano de Construção:  ");
-        entrada.nextLine();
-
+        
         numeroDoApartamento = inInt("Digite o Número do Apartamento:  ");
-        entrada.nextLine();
-
+        
         andar = inInt("Digite o Número do Andar:  ");
-        entrada.nextLine();
-
+        
         valorCondominio = inDouble("Digite o Valor do Condominio:  ");
-        entrada.nextLine();
+
         System.out.println("=======================================");
 
         Imovel apartamento = new Apartamento(logradouro, numero, bairro,
@@ -159,7 +148,7 @@ public class MenuApartamento {
      * Método que consulta o imóvel por código
      */
     public void Consultar() {
-        
+
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();

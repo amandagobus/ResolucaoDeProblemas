@@ -264,7 +264,7 @@ public class MenuChacara {
                     case 2:
 
                         System.out.print("\n\n");
-                        System.out.print("DIGITE O NÚEMRO:");
+                        System.out.print("DIGITE O NÚMERO:");
                         editarLista.setNumero(entrada.nextInt());
                         entrada.nextLine();
 
