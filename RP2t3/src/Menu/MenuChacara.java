@@ -8,6 +8,9 @@ package Menu;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
 import Chacara.Chacara;
+import static Imovel.EntradasTeclado.inDouble;
+import static Imovel.EntradasTeclado.inInt;
+import static Imovel.EntradasTeclado.inString;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -34,7 +37,7 @@ public class MenuChacara {
         //System.out.println("4) Excluir");
         System.out.println("0) VOLTAR ");
         System.out.println(" ");
-        System.out.print("OPÇÃO:    ");
+    
 
     }
 
@@ -82,45 +85,29 @@ public class MenuChacara {
         int anoConstrucao;
         double distCidade;
 
-        System.out.println("Digite o Logradouro:  ");
-        logradouro = entrada.nextLine();
-
-        System.out.println("Digite o Número:  ");
-        numero = entrada.nextInt();
-        entrada.nextLine();
-
-        System.out.println("Digite o Bairro:  ");
-        bairro = entrada.nextLine();
-
-        System.out.println("Digite a Cidade:  ");
-        cidade = entrada.nextLine();
-
-        System.out.println("Digite Uma Descrição:  ");
-        descricao = entrada.nextLine();
-
-        System.out.println("Digite a Área Total:  ");
-        areaTotal = entrada.nextDouble();
-
-        System.out.println("Digite o Valor do Imóvel:  ");
-        valor = entrada.nextDouble();
+      
+        logradouro = inString("Digite o Logradouro:  ");
         
-
-        System.out.println("Digite a Área Construída:  ");
-        areaConstruida = entrada.nextDouble();
-       
-
-        System.out.println("Digite o Número de Quartos:  ");
-        numeroQuartos = entrada.nextInt();
-        entrada.nextLine();
-
-        System.out.println("Digite o Ano da Construção:  ");
-        anoConstrucao = entrada.nextInt();
-        entrada.nextLine();
-
-        System.out.println("Digite a Distância da Cidade:  ");
-        distCidade = entrada.nextDouble();
-        entrada.nextLine();
-
+        numero = inInt("Digite o numero: ");
+        
+        bairro = inString("Digite o Bairro:  ");
+        
+        cidade = inString("Digite a Cidade:  ");
+        
+        descricao = inString("Digite Uma Descrição:  ");
+        
+        areaTotal = inDouble("Digite a Área Total:  ");
+        
+        valor = inDouble("Digite o Valor do Imóvel:  ");
+        
+        areaConstruida = inDouble("Digite a Área Construída:");
+        
+        numeroQuartos = inInt("Digite o Número de Quartos:  ");
+        
+        anoConstrucao =inInt("Digite o Ano da Construção: ");
+      
+        distCidade = inDouble("Digite a Distância da Cidade:  ");
+      
         Imovel chacara = new Chacara(distCidade, logradouro, numero, bairro, cidade, 
             descricao, areaTotal, valor, areaConstruida, numeroQuartos, anoConstrucao);
 
@@ -165,8 +152,8 @@ public class MenuChacara {
        
         do {
             MenuChacara.menu();
-            i = entrada.nextInt();
-            entrada.nextLine();
+            i = inInt("Opção: ");
+
 
             switch (i) {
                 case 1:
@@ -264,7 +251,7 @@ public class MenuChacara {
                     case 2:
 
                         System.out.print("\n\n");
-                        System.out.print("DIGITE O NÚEMRO:");
+                        System.out.print("DIGITE O NÚMERO:");
                         editarLista.setNumero(entrada.nextInt());
                         entrada.nextLine();
 
