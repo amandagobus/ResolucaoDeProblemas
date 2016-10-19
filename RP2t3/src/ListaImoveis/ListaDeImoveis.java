@@ -195,11 +195,13 @@ public class ListaDeImoveis implements ListaImoveis {
       //Chama metodo de ler Chacara
       return true;
     }if(tipo.getValor() == 4){
+        
         try {
             lerSala();
         } catch (IOException ex) {
             Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
      return true;   
     }if(tipo.getValor() == 5){
       //Chama metodo de Ler terreno

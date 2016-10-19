@@ -292,14 +292,11 @@ public class MenuSalaComercial {
         TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
         String caminho = lista.Converte(tipo);
         lista.setCaminho(caminho);
-        try {
-            if(lista.lerSala()==true){
-                System.out.println("Arquivos carregados");
-            }else {
-                System.out.println("Arquivo não iniciados");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+        lista.lerArquivo();
+        if(lista.lerArquivo()==true){
+            System.out.println("Arquivos carregados");
+        }else {
+            System.out.println("Arquivo não iniciados");
         }
         do {
             MenuSalaComercial.menu();
