@@ -145,7 +145,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Apartamento.csv"));
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
@@ -448,7 +448,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     public boolean lerCasa() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv");
+        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Casa.csv");
 
         if (file.exists()) {
             FileInputStream arquivo;

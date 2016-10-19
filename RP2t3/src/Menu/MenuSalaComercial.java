@@ -80,8 +80,7 @@ public class MenuSalaComercial {
         valorCondominio = inDouble("Digite o Valor do Condominio:  ");
         numeroDaSala = inInt("Digite o Número da Sala:  ");
         numeroDeBanheiros = inInt("Digite o Número de Banheiros:  ");
-        
-        
+
         Imovel salaC = new SalaComercial(logradouro, numero, bairro, cidade,
                 descricao, areaTotal, valor, nomeEdifico, andar, valorCondominio,
                 numeroDeBanheiros, numeroDaSala);
@@ -106,6 +105,7 @@ public class MenuSalaComercial {
      * na listaImoveis.
      */
     public void Consultar() {
+        
         System.out.println("\n");
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
@@ -154,7 +154,7 @@ public class MenuSalaComercial {
         entrada.nextLine();
         Imovel editarLista = lista.consultar(codigoConsulta);
         entrada.nextLine();
-        
+
         int i;
         double d;
         String st;
@@ -196,7 +196,6 @@ public class MenuSalaComercial {
                         System.out.print("\n\n");
                         i = inInt("DIGITE O NÚEMRO:  ");
                         editarLista.setNumero(i);
-                        
 
                         break;
 
@@ -252,7 +251,7 @@ public class MenuSalaComercial {
                         System.out.print("\n");
                         i = inInt("DIGITE O ANDAR:  ");
                         editarLista.setAndar(i);
-                        
+
                         break;
 
                     case 10:
@@ -260,7 +259,7 @@ public class MenuSalaComercial {
                         System.out.print("\n");
                         d = inDouble("DIGITE O VALOR DO CONDOMINIO:  ");
                         editarLista.setValor(d);
-                        
+
                         break;
 
                     case 11:
@@ -268,7 +267,6 @@ public class MenuSalaComercial {
                         System.out.print("\n");
                         i = inInt("DIGITE O NÚMERO DA SALA:  ");
                         editarLista.setNumeroDaSala(i);
-                        
 
                         break;
 
@@ -277,7 +275,6 @@ public class MenuSalaComercial {
                         System.out.print("\n");
                         i = inInt("DIGITE O NÚMERO DE BANHEIRO:  ");
                         editarLista.setNumeroDeBanheiros(i);
-                        
 
                         break;
 

@@ -12,6 +12,7 @@ import Casa.Casa;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import Imovel.Tipo;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -59,6 +60,16 @@ public class MenuCasa {
                     break;
             }
         } while (opcao != 0);
+
+    }
+
+    public void Carregar() {
+
+        try {
+            lista.lerCasa();
+        } catch (IOException ex) {
+            Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -125,7 +136,7 @@ public class MenuCasa {
 
         boolean objeto = lista.incluir(casa);
         try {
-            lista.escreverArquivo();
+            lista.gravarCasa();
         } catch (Exception ex) {
             Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -254,7 +265,7 @@ public class MenuCasa {
             }
             lista.editar(codigo, casa);
             try {
-                lista.escreverArquivo();
+                lista.gravarCasa();
             } catch (Exception ex) {
                 Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
             }
