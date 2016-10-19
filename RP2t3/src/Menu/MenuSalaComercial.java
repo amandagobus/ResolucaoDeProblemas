@@ -297,7 +297,7 @@ public class MenuSalaComercial {
 
     public void menuInicial() {
         int i;
-
+        
         do {
             MenuSalaComercial.menu();
             i = entrada.nextInt();

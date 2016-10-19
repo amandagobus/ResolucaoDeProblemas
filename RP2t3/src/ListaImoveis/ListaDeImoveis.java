@@ -12,6 +12,7 @@ import SalaComercial.SalaComercial;
 import java.util.ArrayList;
 import java.util.List;
 import Imovel.ListaImoveis;
+import Imovel.TipoDeImovel;
 import Menu.MenuSalaComercial;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -32,13 +33,10 @@ import java.util.logging.Logger;
 public class ListaDeImoveis implements ListaImoveis {
 
     List<Imovel> lista = new ArrayList<>();
-     private String tipo;
+     private TipoDeImovel tipo;
      
-    public void setTipo(String tipo){
-    this.tipo = tipo;
-    }
-    
-    public String getTipo(){
+       
+    public TipoDeImovel getTipo(){
     return tipo;
     
     }
@@ -145,7 +143,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo+".csv"));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
@@ -176,7 +174,7 @@ public class ListaDeImoveis implements ListaImoveis {
             int codigo, numero, andar, numeroSala, NumeroBanheiro;
             double areaTotal, valor, valorCondominio;
             Imovel sala;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
+            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo+".csv"));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
             linha = ler.readLine();
