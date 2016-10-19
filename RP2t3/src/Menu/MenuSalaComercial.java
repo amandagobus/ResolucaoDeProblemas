@@ -298,9 +298,9 @@ public class MenuSalaComercial {
 
     public void menuInicial() {
         int i;
-        TipoDeImovel t = TipoDeImovel.APARTAMENTO;
-        lista.ListaDeImoveis(t);
-        
+        TipoDeImovel tipo = TipoDeImovel.APARTAMENTO;
+        String caminho = lista.Converte(tipo);
+        lista.setCaminho(caminho);
         do {
             MenuSalaComercial.menu();
             i = entrada.nextInt();

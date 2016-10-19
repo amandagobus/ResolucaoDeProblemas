@@ -33,19 +33,37 @@ import java.util.logging.Logger;
 public class ListaDeImoveis implements ListaImoveis {
 
     List<Imovel> lista = new ArrayList<>();
-     private TipoDeImovel tipo;
-     
-       
-     
+    private TipoDeImovel tipo;
+    private String caminho;
+
     
-  public void ListaDeImoveis(TipoDeImovel tipo){
-  this.tipo = tipo;
-  
-  }
-    public TipoDeImovel getTipo(){
-    return tipo;
-    
+     /**
+     * @return the caminho
+     */
+    public String getCaminho() {
+        return caminho;
     }
+
+    /**
+     * @param caminho the caminho to set
+     */
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+    
+    
+    
+    public String Converte(TipoDeImovel tipo) {
+        this.tipo = tipo;
+        this.caminho="";
+        return System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv";
+    }
+
+    public TipoDeImovel getTipo() {
+        return tipo;
+
+    }
+
     @Override
     public boolean incluir(Imovel im) {
         lista.add(im);
@@ -149,8 +167,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") +
-                    System.getProperty("file.separator") + this.tipo+".csv"));
+            FileWriter outFile = new FileWriter(new File(getCaminho()));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
@@ -181,7 +198,7 @@ public class ListaDeImoveis implements ListaImoveis {
             int codigo, numero, andar, numeroSala, NumeroBanheiro;
             double areaTotal, valor, valorCondominio;
             Imovel sala;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo+".csv"));
+            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv"));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
             linha = ler.readLine();
@@ -501,5 +518,7 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
+
+   
 
 }
