@@ -36,6 +36,12 @@ public class ListaDeImoveis implements ListaImoveis {
      private TipoDeImovel tipo;
      
        
+     
+    
+  public void ListaDeImoveis(TipoDeImovel tipo){
+  this.tipo = tipo;
+  
+  }
     public TipoDeImovel getTipo(){
     return tipo;
     
@@ -143,7 +149,8 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo+".csv"));
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") +
+                    System.getProperty("file.separator") + this.tipo+".csv"));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());

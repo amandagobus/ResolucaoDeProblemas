@@ -9,6 +9,7 @@ import Imovel.Imovel;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inString;
+import Imovel.TipoDeImovel;
 import ListaImoveis.ListaDeImoveis;
 import SalaComercial.SalaComercial;
 import java.io.IOException;
@@ -297,6 +298,8 @@ public class MenuSalaComercial {
 
     public void menuInicial() {
         int i;
+        TipoDeImovel t = TipoDeImovel.APARTAMENTO;
+        lista.ListaDeImoveis(t);
         
         do {
             MenuSalaComercial.menu();
