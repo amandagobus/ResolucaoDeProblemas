@@ -92,15 +92,15 @@ public class MenuCasa {
         int anoConstrucao;
 
         int numeroDeVagas;
-        
+
         System.out.println("=======================================");
         logradouro = inString("Digite o Logradouro:  ");
         numero = inInt("Digite o Número:  ");
 
         bairro = inString("Digite o Bairro:  ");
-        
+
         cidade = inString("Digite a Cidade:  ");
-        
+
         descricao = inString("Digite Uma Descrição:  ");
 
         areaTotal = inDouble("Digite a Área Total:  ");
@@ -184,63 +184,49 @@ public class MenuCasa {
 
             switch (atributo) {
                 case "logradouro":
-                    System.out.print("Digite o  logradouro: ");
-                    casa.setLogradouro(entrada.nextLine());
+                    casa.setLogradouro(inString(" Digite o  logradouro:"));
 
                     break;
                 case "numero":
-                    System.out.print("Digite o número: ");
-                    casa.setNumero(entrada.nextInt());
-                    entrada.nextLine();
+                    casa.setNumero(inInt("Digite o número: "));
 
                     break;
                 case "bairro":
-                    System.out.print("Digite o Bairro: ");
-                    casa.setBairro(entrada.nextLine());
-
+                    casa.setBairro(inString("Digite o número: "));
                     break;
                 case "cidade":
-                    System.out.print("Digite a Cidade: ");
-                    casa.setCidade(entrada.nextLine());
+                    casa.setCidade(inString("Digite a Cidade: "));
 
                     break;
                 case "descricao":
-                    System.out.print("Digite a Descrição: ");
-                    casa.setDescricao(entrada.nextLine());
+
+                    casa.setDescricao(inString("Digite a Descrição: "));
 
                     break;
                 case "area total":
-                    System.out.println("Digite a Área Total: ");
-                    casa.setAreaTotal(entrada.nextDouble());
-                    entrada.nextLine();
+                    casa.setAreaTotal(inDouble("Digite a Área Total: "));
 
                     break;
                 case "valor do imovel":
-                    System.out.print("Digite o valor do Imóvel: ");
-                    casa.setValor(entrada.nextDouble());
-                    entrada.nextLine();
+                    casa.setValor(inDouble("Digite o valor do Imóvel: "));
 
                     break;
                 case "area Construida":
-                    System.out.print("Digite a Área Construída: ");
-                    casa.setAreaConstruida(entrada.nextDouble());
-                    entrada.nextLine();
+                    casa.setAreaConstruida(inDouble("Digite a Área Construída: "));
+
                     break;
                 case "numero de quartos":
-                    System.out.print("Digite o Número de Quartos: ");
-                    casa.setNumeroQuartos(entrada.nextInt());
-                    entrada.nextLine();
+                    casa.setNumeroQuartos(inInt("Digite o Número de Quartos: "));
+
                     break;
                 case "numero de vagas":
-                    System.out.print("Digite o Número de vagas na garagem: ");
-                    casa.setNumeroDeVagas(entrada.nextInt());
-                    entrada.nextLine();
+                    casa.setNumeroDeVagas(inInt("Digite o Número de vagas na garagem: "));
+
                     break;
 
                 case "ano de construcao":
-                    System.out.print("Digite o ano de Construção: ");
-                    casa.setAnoConstrucao(entrada.nextInt());
-                    entrada.nextLine();
+                    casa.setAnoConstrucao(inInt("Digite o ano de Construção: "));
+
                     break;
 
                 case "tipo":

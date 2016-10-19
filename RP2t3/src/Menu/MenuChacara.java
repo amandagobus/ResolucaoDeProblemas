@@ -37,7 +37,7 @@ public class MenuChacara {
         //System.out.println("4) Excluir");
         System.out.println("0) VOLTAR ");
         System.out.println(" ");
-        System.out.print("OPÇÃO:    ");
+    
 
     }
 
@@ -152,8 +152,8 @@ public class MenuChacara {
        
         do {
             MenuChacara.menu();
-            i = entrada.nextInt();
-            entrada.nextLine();
+            i = inInt("Opção: ");
+
 
             switch (i) {
                 case 1:

@@ -103,7 +103,7 @@ public class ListaDeImoveis implements ListaImoveis {
     /**
      * Metodo que pesquisa um Imovel pelo valor
      *
-     * @param bairro, inoformado pelo usuario
+     * @param bairro, informado pelo usuario
      * @return uma lista de Imóvel, cujo valor seja menor ou igual ao valor
      * informado
      */
