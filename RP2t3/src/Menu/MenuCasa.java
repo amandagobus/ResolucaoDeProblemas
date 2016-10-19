@@ -92,6 +92,7 @@ public class MenuCasa {
         int anoConstrucao;
 
         int numeroDeVagas;
+        
         System.out.println("=======================================");
         logradouro = inString("Digite o Logradouro:  ");
         numero = inInt("Digite o Número:  ");
