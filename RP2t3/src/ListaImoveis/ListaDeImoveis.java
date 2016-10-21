@@ -112,10 +112,28 @@ public class ListaDeImoveis implements ListaImoveis {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
+    /**
+     * Metodo que ordena a lista por valor.
+     * @return lista, lista ordenada por valor
+     */
+    
     @Override
     public List<Imovel> ordenarValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        Imovel aux;
+        for (int i = 1; i < lista.size(); i++) {
+            for (int j = i; j > 0; j--) {
+                if (lista.get(j).getValor()< lista.get(j - 1).getValor()) {
+                    aux = lista.get(j);
+                    lista.add(j, lista.get(j - 1));
+                    lista.add(j - 1, aux);
+                } else {
+                    break;
+                }
+            }
+        }
+      return lista;
+    } 
 
     @Override
     public List<Imovel> ordenarArea() {
