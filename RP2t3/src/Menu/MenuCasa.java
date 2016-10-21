@@ -9,11 +9,13 @@ import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
 import java.util.Scanner;
 import Casa.Casa;
+import static Imovel.EntradasTeclado.div;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.Tipo;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +27,8 @@ public class MenuCasa {
 
     Casa casa;
     ListaDeImoveis lista = new ListaDeImoveis();
+    private List<Imovel> ListaOrdenada;
+    private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
 
     /**
@@ -39,6 +43,7 @@ public class MenuCasa {
             System.out.println("2) Consultar");
             System.out.println("3) Editar ");
             System.out.println("4) Excluir");
+            System.out.println("5) Ordenar");
             System.out.println("0) Sair ");
             System.out.println(" ");
             System.out.print("Opção: ");
@@ -58,6 +63,9 @@ public class MenuCasa {
                     break;
                 case 4:
                     Excluir();
+                    break;
+                case 5:
+                    ordenar();
                     break;
             }
         } while (opcao != 0);
@@ -136,6 +144,53 @@ public class MenuCasa {
             System.out.println("Imóvel incluido com sucesso.");
         } else {
             System.out.println("Imóvel não foi incluido.");
+        }
+    }
+
+    private int mostrarLista(List<Imovel> lista) {
+        int imovelCod;
+        div();
+        for (Imovel imovel : lista) {
+            System.out.println(imovel.getCodigo() + " Logradouro: " + imovel.getLogradouro() + " Valor:" + imovel.getValor());
+        }
+        div();
+        return inInt("Digite o código do imóvel: ");
+    }
+
+    /**
+     * Método de ordenar
+     */
+    private void ordenar() {
+        System.out.println("============================================");
+        System.out.println("1)Ordenar por código");
+        System.out.println("2)Ordenar por valor");
+        System.out.println("3)Ordenar por área ");
+        System.out.println("--------------------------------------------");
+        int opcao = inInt("Digite a opção: ");
+        switch (opcao) {
+            case 1:
+                this.ListaOrdenada = this.lista.ordenarCodigo();
+                int imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            case 2:
+                this.ListaOrdenada = this.lista.ordenarValor();
+                imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            case 3:
+                this.ListaOrdenada = this.lista.ordenarArea();
+                imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            default:
+                System.out.println("Opção Inválida ");
         }
     }
 
