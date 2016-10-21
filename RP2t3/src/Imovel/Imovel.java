@@ -158,6 +158,8 @@ public abstract class Imovel {
     }
     
     
+    
+    
     //Bloco com os metodos abstratos, USAR em Editar, e para escrver Arquivos.
     
     
