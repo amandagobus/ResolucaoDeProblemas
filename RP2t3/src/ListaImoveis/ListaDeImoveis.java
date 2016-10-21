@@ -135,19 +135,20 @@ public class ListaDeImoveis implements ListaImoveis {
     
     @Override
     public List<Imovel> ordenarValor() {
-        Imovel aux;
-        for (int i = 1; i < lista.size(); i++) {
+        List<Imovel> aux = new ArrayList<>();
+        aux.addAll(this.lista);
+        for (int i = 1; i < aux.size(); i++) {
             for (int j = i; j > 0; j--) {
                 if (lista.get(j).getValor()< lista.get(j - 1).getValor()) {
-                    aux = lista.get(j);
-                    lista.add(j, lista.get(j - 1));
-                    lista.add(j - 1, aux);
+                    Imovel Imo = aux.get(j);
+                    aux.add(j, aux.get(j - 1));
+                    aux.add(j - 1, Imo);
                 } else {
                     break;
                 }
             }
         }
-      return lista;
+      return aux;
     } 
 
     @Override
