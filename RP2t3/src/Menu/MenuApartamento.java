@@ -6,12 +6,14 @@
 package Menu;
 
 import Apartamento.Apartamento;
+import static Imovel.EntradasTeclado.div;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.Imovel;
 import ListaImoveis.ListaDeImoveis;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +26,8 @@ public class MenuApartamento {
 
     Apartamento apartamento;
     ListaDeImoveis lista = new ListaDeImoveis();
+    private List<Imovel> ListaOrdenada;
+    private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
 
     /**
@@ -38,6 +42,7 @@ public class MenuApartamento {
             System.out.println("2) Consultar");
             System.out.println("3) Editar ");
             System.out.println("4) Excluir");
+            System.out.println("5) Ordenar");
             System.out.println("0) Sair ");
             System.out.println(" ");
 
@@ -57,6 +62,9 @@ public class MenuApartamento {
                     break;
                 case 4:
                     Excluir();
+                    break;
+                case 5:
+                    ordenar();
                     break;
             }
         } while (opcao != 0);
@@ -165,6 +173,53 @@ public class MenuApartamento {
 
     }
 
+    private int mostrarLista(List<Imovel> lista) {
+        int imovelCod;
+        div();
+        for (Imovel imovel : lista) {
+            System.out.println(imovel.getCodigo() + " Logradouro: " + imovel.getLogradouro() + " Valor:" + imovel.getValor());
+        }
+        div();
+        return inInt("Digite o código do imóvel: ");
+    }
+
+    /**
+     * Método de ordenar
+     */
+    private void ordenar() {
+        System.out.println("============================================");
+        System.out.println("1)Ordenar por código");
+        System.out.println("2)Ordenar por valor");
+        System.out.println("3)Ordenar por área ");
+        System.out.println("--------------------------------------------");
+        int opcao = inInt("Digite a opção: ");
+        switch (opcao) {
+            case 1:
+                this.ListaOrdenada = this.lista.ordenarCodigo();
+                int imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            case 2:
+                this.ListaOrdenada = this.lista.ordenarValor();
+                imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            case 3:
+                this.ListaOrdenada = this.lista.ordenarArea();
+                imovelCod = this.mostrarLista(ListaOrdenada);
+                System.out.println("==========================================");
+                System.out.println(lista.consultar(imovelCod).toString());
+                System.out.println("==========================================");
+                break;
+            default:
+                System.out.println("Opção Inválida ");
+        }
+    }
+
     /**
      * Método que Edita um imóvel utilizando o codigo
      */
@@ -185,68 +240,65 @@ public class MenuApartamento {
 
                     break;
                 case "numero":
-                   
+
                     apartamento.setNumero(inInt("Digite o número: "));
-                  
 
                     break;
                 case "bairro":
-                  
+
                     apartamento.setBairro(inString("Digite o número: "));
 
                     break;
                 case "cidade":
-                   
+
                     apartamento.setCidade(inString("Digite a Cidade: "));
 
                     break;
                 case "descricao":
-                    
+
                     apartamento.setDescricao(inString("Digite a Descrição: "));
 
                     break;
                 case "area total":
                     apartamento.setAreaTotal(inDouble("Digite a Área Total: "));
-                    
 
                     break;
                 case "valor":
                     apartamento.setValor(inDouble("Digite o valor do Imóvel: "));
-                  
 
                     break;
 
                 case "nome do edificio":
-                   apartamento.setNomeEdificio(inString("Digite o Nome do Edifício"));
+                    apartamento.setNomeEdificio(inString("Digite o Nome do Edifício"));
                     break;
 
                 case "numero de quartos":
-                 
+
                     apartamento.setNumeroQuartos(inInt("Digite o Número de Quartos: "));
-                
+
                     break;
 
                 case "numero de vagas":
-               
+
                     apartamento.setNumeroVagas(inInt("Digite o Número de vagas na garagem: "));
-                
+
                     break;
 
                 case "ano de construcao":
-                 
+
                     apartamento.setAnoDeConstrucao(inInt("Digite o ano de Construção: "));
-                 
+
                     break;
 
                 case "numero do apartamento":
-               
+
                     apartamento.setNumeroDoApartamento(inInt("Digite o número do apartamento: "));
-             
+
                     break;
 
                 case " andar:":
-                apartamento.setAndar(inInt("Digite o Número do Andar: "));
-                 
+                    apartamento.setAndar(inInt("Digite o Número do Andar: "));
+
                     break;
 
                 case "valor do condominio":
@@ -266,6 +318,9 @@ public class MenuApartamento {
         }
     }
 
+    /**
+     * Método que exclui por código
+     */
     public void Excluir() {
         System.out.println("Digite o código do imóvel que você deseja excluir:  ");
         int codigo = entrada.nextInt();
