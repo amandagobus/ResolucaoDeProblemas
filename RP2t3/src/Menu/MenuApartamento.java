@@ -215,6 +215,8 @@ public class MenuApartamento {
                 System.out.println(lista.consultar(imovelCod).toString());
                 System.out.println("==========================================");
                 break;
+            default:
+                System.out.println("Opção Inválida ");
         }
     }
 
