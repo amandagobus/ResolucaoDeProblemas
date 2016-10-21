@@ -36,8 +36,7 @@ public class ListaDeImoveis implements ListaImoveis {
     private TipoDeImovel tipo;
     private String caminho;
 
-    
-     /**
+    /**
      * @return the caminho
      */
     public String getCaminho() {
@@ -50,12 +49,10 @@ public class ListaDeImoveis implements ListaImoveis {
     public void setCaminho(String caminho) {
         this.caminho = caminho;
     }
-    
-    
-    
+
     public String Converte(TipoDeImovel tipo) {
         this.tipo = tipo;
-        this.caminho="";
+        this.caminho = "";
         return System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv";
     }
 
@@ -107,9 +104,27 @@ public class ListaDeImoveis implements ListaImoveis {
         }
     }
 
+    /**
+     * Método que Ordena por código, o método cria uma nova lista aux e deixa ordenado
+     *
+     * @return
+     */
     @Override
     public List<Imovel> ordenarCodigo() {
-      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Imovel> aux = new ArrayList<>();
+        aux.addAll(this.lista);
+        for (int i = 0; i < aux.size(); i++) {
+            for (int j = 1; j < aux.size() - 1; j++) {
+                if (aux.get(j).getCodigo() > aux.get(j + 1).getCodigo()) {
+                    Imovel a = aux.get(i);
+                    aux.set(j, aux.get(j + 1));
+                    aux.set(j + 1, a);
+
+                }
+            }
+
+        }
+        return aux;
     }
 
     
@@ -175,6 +190,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return l;
 
     }
+
     @Override
     public boolean escreverArquivo() {
 
@@ -199,39 +215,39 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-    
-
     @Override
     public boolean lerArquivo() {
-    if(tipo.getValor() == 1){
-        //chamar metodo de ler apartamamento
-     return true;
-    }if(tipo.getValor() == 2){
-       //Chama metodo de ler casa
-     return true;  
-    }if(tipo.getValor() == 3){
-      //Chama metodo de ler Chacara
-      return true;
-    }if(tipo.getValor() == 4){
-        
-        try {
-            lerSala();
-        } catch (IOException ex) {
-            Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+        if (tipo.getValor() == 1) {
+            //chamar metodo de ler apartamamento
+            return true;
         }
-        
-     return true;   
-    }if(tipo.getValor() == 5){
-      //Chama metodo de Ler terreno
-      
-     return true; 
-    }
-    
-    
-    return false;
+        if (tipo.getValor() == 2) {
+            //Chama metodo de ler casa
+            return true;
+        }
+        if (tipo.getValor() == 3) {
+            //Chama metodo de ler Chacara
+            return true;
+        }
+        if (tipo.getValor() == 4) {
+
+            try {
+                lerSala();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return true;
+        }
+        if (tipo.getValor() == 5) {
+            //Chama metodo de Ler terreno
+
+            return true;
+        }
+
+        return false;
     }
 
-    
     public boolean lerSala() throws FileNotFoundException, IOException {
 
         File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv");
@@ -277,10 +293,6 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-     
-
-    
-    
     public void gravarChacara() throws Exception {
 
         //verificar se o arquivo existe, se não existeir criar (o ato de recriar o mesmo arquivo ja resolve por se só?)
@@ -498,7 +510,5 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-
-   
 
 }
