@@ -13,6 +13,7 @@ import Imovel.Imovel;
  */
 public class Terreno extends Imovel {
 
+    
     private double dimensaoFrente;
     private double dimensaoLado;
     

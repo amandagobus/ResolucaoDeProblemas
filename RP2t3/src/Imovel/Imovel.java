@@ -158,6 +158,8 @@ public abstract class Imovel {
     }
     
     
+    
+    
     //Bloco com os metodos abstratos, USAR em Editar, e para escrver Arquivos.
     
     
@@ -231,7 +233,7 @@ public abstract class Imovel {
     
     public void setDistCidade(double i){
     }
-    
+
 
     /**
      * Diz como o Objeto imoveis deve se escrever como uma String.
@@ -261,11 +263,26 @@ public abstract class Imovel {
     
     return dados;
     
+    
     }
     public String toFile(){
     String dados = "";
     dados += codigo+ ","+ logradouro+ ","+numero+ ","+bairro+ ","+cidade+ ","+descricao+ ","+areaTotal+ ","+valor+",";
     return dados;
+    }
+    
+    public double getDimensaoFrente(double d) {
+        return i;       
+    }
+    
+    public void setDimensaoFrente(double d) {     
+    } 
+    
+    public double getDimensaoLado(double d) {
+        return i;
+    }
+
+    public void setDimensaoLado(double d) {
     }
 
 }
