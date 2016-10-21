@@ -13,6 +13,7 @@ import Imovel.TipoDeImovel;
 import ListaImoveis.ListaDeImoveis;
 import SalaComercial.SalaComercial;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +34,8 @@ public class MenuSalaComercial {
         System.out.println("2) CONSULTAR");
         System.out.println("3) EDITAR ");
         System.out.println("4) EXCLUIR");
+        System.out.println("5) PESQUISAR");
+        System.out.println("6) ORDENANAR");
         System.out.println("0) VOLTAR ");
         System.out.println(" ");
         System.out.print("OPÇÃO:    ");
@@ -50,6 +53,27 @@ public class MenuSalaComercial {
 
     }
 
+    public static void menu3() {
+        System.out.println("*************** MENU DE PESQUISA *****************");
+        System.out.println(" \n");
+        System.out.println("1) BAIRRO ");
+        System.out.println("2) VALOR ");
+        System.out.println("0) VOLTAR");
+        System.out.println("\n ");
+        System.out.print("OPÇÃO:     ");
+
+    }
+    public static void menu4() {
+        System.out.println("*************** MENU DE ORDENAÇÃO*****************");
+        System.out.println(" \n");
+        System.out.println("1) ARÉA ");
+        System.out.println("2) CODIGO ");
+        System.out.println("3) VALOR");
+        System.out.println("0) VOLTAR");
+        System.out.println("\n ");
+        System.out.print("OPÇÃO:     ");
+
+    }
     /**
      * Metodo que faz a interação com o usuário, passando após as informações
      * para o construtor.
@@ -287,9 +311,8 @@ public class MenuSalaComercial {
 
     }
 
-    public void menuInicial() {
-        int i;
-        TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
+    public void Carregar(){
+    TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
         String caminho = lista.Converte(tipo);
         lista.setCaminho(caminho);
         lista.lerArquivo();
@@ -298,6 +321,12 @@ public class MenuSalaComercial {
         }else {
             System.out.println("Arquivo não iniciados");
         }
+    
+    }
+    
+    public void menuInicial() {
+        int i;
+        
         do {
             MenuSalaComercial.menu();
             i = entrada.nextInt();
@@ -342,6 +371,52 @@ public class MenuSalaComercial {
                     break;
 
                 case 5:
+                    MenuSalaComercial.menu3();
+                    opcao = entrada.nextInt();
+                    entrada.nextLine();
+
+                    switch (opcao) {
+                        case 1:
+                            String s = inString("INFORME O BAIRRO");
+                            List imovel =lista.pesquisaBairro(s);
+                            System.out.println(imovel.toString());
+                            break;
+                            
+                        case 2:
+                            double d = inDouble("INFORME O VALOR");
+                            List imo =lista.pesquisaValor(d);
+                            entrada.nextLine();
+                            System.out.println(imo.toString());
+                            
+                            break;
+
+                        default:
+                            break;
+
+                    }
+                   break;
+                   
+                case 6:
+                    MenuSalaComercial.menu4();
+                    opcao = entrada.nextInt();
+                    entrada.nextLine();
+
+                    switch (opcao) {
+                        case 1:
+                            lista.ordenarCodigo();
+                            break;
+                            
+                        case 2:
+                            lista.ordenarValor();
+                            
+                            break;
+                        case 3:
+                            lista.ordenarArea();
+                            break;
+                        default:
+                            break;
+
+                    }
 
                 default:
                     break;

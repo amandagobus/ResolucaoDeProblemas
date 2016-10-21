@@ -183,7 +183,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public List<Imovel> pesquisaBairro(String bairro) {
         List<Imovel> l = new ArrayList<>();
         for (Imovel imovel : lista) {
-            if (imovel.getBairro().contains(bairro)) {
+            if (imovel.getBairro().equalsIgnoreCase(bairro)) {
                 l.add(imovel);
             }
         }
