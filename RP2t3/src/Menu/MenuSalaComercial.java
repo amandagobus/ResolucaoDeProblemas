@@ -396,24 +396,25 @@ public class MenuSalaComercial {
                    break;
                    
                 case 6:
+                    List<Imovel> aux;
                     MenuSalaComercial.menu4();
                     opcao = entrada.nextInt();
                     entrada.nextLine();
 
                     switch (opcao) {
                         case 1:
-                            //lista.ordenarArea();
+                            aux= lista.ordenarArea();
+                            System.out.println(aux.toString());
                             
                             break;
                             
                         case 2:
-                            List<Imovel> aux = lista.ordenarCodigo();
+                            aux= lista.ordenarCodigo();
                             System.out.println(aux.toString());                           
                             break;
                         case 3:
-                            List<Imovel> aux1 = lista.ordenarValor();
-                            System.out.println("aki");
-                            System.out.println(aux1.toString());
+                            aux = lista.ordenarValor();
+                            System.out.println(aux.toString());
                             
                             break;
                         default:
