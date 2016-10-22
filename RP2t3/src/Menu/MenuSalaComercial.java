@@ -377,15 +377,14 @@ public class MenuSalaComercial {
 
                     switch (opcao) {
                         case 1:
-                            String s = inString("INFORME O BAIRRO");
+                            String s = inString("INFORME O BAIRRO  ");
                             List imovel =lista.pesquisaBairro(s);
                             System.out.println(imovel.toString());
                             break;
                             
                         case 2:
-                            double d = inDouble("INFORME O VALOR");
+                            double d = inDouble("INFORME O VALOR  ");
                             List imo =lista.pesquisaValor(d);
-                            entrada.nextLine();
                             System.out.println(imo.toString());
                             
                             break;
@@ -403,15 +402,19 @@ public class MenuSalaComercial {
 
                     switch (opcao) {
                         case 1:
-                            lista.ordenarCodigo();
+                            //lista.ordenarArea();
+                            
                             break;
                             
                         case 2:
-                            lista.ordenarValor();
-                            
+                            List<Imovel> aux = lista.ordenarCodigo();
+                            System.out.println(aux.toString());                           
                             break;
                         case 3:
-                            lista.ordenarArea();
+                            List<Imovel> aux1 = lista.ordenarValor();
+                            System.out.println("aki");
+                            System.out.println(aux1.toString());
+                            
                             break;
                         default:
                             break;
