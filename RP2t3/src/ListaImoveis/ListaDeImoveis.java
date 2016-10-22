@@ -139,12 +139,12 @@ public class ListaDeImoveis implements ListaImoveis {
         aux.addAll(this.lista);
         for (int i = 1; i < aux.size(); i++) {
             for (int j = i; j > 0; j--) {
-                if (lista.get(j).getValor()< lista.get(j - 1).getValor()) {
+                if (aux.get(j).getValor()< aux.get(j - 1).getValor()) {
                     Imovel Imo = aux.get(j);
-                    aux.add(j, aux.get(j - 1));
-                    aux.add(j - 1, Imo);
-                } else {
-                    break;
+                    aux.set(j, aux.get(j - 1));
+                    aux.set(j - 1, Imo);
+                } else{
+                break;
                 }
             }
         }
@@ -196,7 +196,7 @@ public class ListaDeImoveis implements ListaImoveis {
     public boolean escreverArquivo() {
 
         try {
-            FileWriter outFile = new FileWriter(new File(caminho));
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "SALACOMERCIAL.csv"));
             BufferedWriter escrever = new BufferedWriter(outFile);
             Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
