@@ -14,6 +14,7 @@ import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.Tipo;
+import Imovel.TipoDeImovel;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,6 +45,7 @@ public class MenuCasa {
             System.out.println("3) Editar ");
             System.out.println("4) Excluir");
             System.out.println("5) Ordenar");
+            System.out.println("6) Pesquisar");
             System.out.println("0) Sair ");
             System.out.println(" ");
             System.out.print("Opção: ");
@@ -67,17 +69,46 @@ public class MenuCasa {
                 case 5:
                     ordenar();
                     break;
+                case 6:
+                    MenuApartamento.menu2();
+                    opcao = inInt("Opção: ");
+                    switch (opcao) {
+                        case 1:
+                            String s = inString("Informe o Bairro: ");
+                            List imovel = lista.pesquisaBairro(s);
+                            System.out.println(imovel.toString());
+                            break;
+                        case 2:
+                            double d = inDouble("Informe o Valor: ");
+                            List imo = lista.pesquisaValor(d);
+                            System.out.println(imo.toString());
+                            break;
+
+                    }
+                    break;
             }
         } while (opcao != 0);
 
     }
 
-    public void Carregar() {
+    public static void menu2() {
+        System.out.println("=================================================");
+        System.out.println("===============Selecione uma opção===============");
+        System.out.println("  1)Bairro  ");
+        System.out.println("  2)Valor");
+        System.out.println("");
 
-        try {
-            lista.lerCasa();
-        } catch (IOException ex) {
-            Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    public void Carregar() {
+        TipoDeImovel tipo = TipoDeImovel.CASA;
+        String caminho = lista.Converte(tipo);
+        lista.setCaminho(caminho);
+        lista.lerArquivo();
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
         }
 
     }
@@ -133,17 +164,17 @@ public class MenuCasa {
         System.out.println("=======================================");
 
         boolean objeto = lista.incluir(casa);
-        try {
-            lista.gravarCasa();
-        } catch (Exception ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         System.out.println("\n\n");
         if (objeto == true) {
             System.out.println("Imóvel incluido com sucesso.");
         } else {
             System.out.println("Imóvel não foi incluido.");
+        }
+        try {
+            lista.escreverArquivo();
+        } catch (Exception ex) {
+            Logger.getLogger(MenuCasa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -294,14 +325,18 @@ public class MenuCasa {
                     break;
 
             }
+
             lista.editar(codigo, casa);
             try {
-                lista.gravarCasa();
+                lista.escreverArquivo();
             } catch (Exception ex) {
-                Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MenuCasa.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        } else {
+            System.out.println("\n IMÓVEL NÂO ENCONTRADO ");
         }
 
     }
+
 }

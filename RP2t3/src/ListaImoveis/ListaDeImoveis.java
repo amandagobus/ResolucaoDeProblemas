@@ -105,7 +105,8 @@ public class ListaDeImoveis implements ListaImoveis {
     }
 
     /**
-     * Método que Ordena por código, o método cria uma nova lista aux e deixa ordenado
+     * Método que Ordena por código, o método cria uma nova lista aux e a deixa
+     * ordenada
      *
      * @return
      */
@@ -116,7 +117,7 @@ public class ListaDeImoveis implements ListaImoveis {
         for (int i = 0; i < aux.size(); i++) {
             for (int j = 1; j < aux.size() - 1; j++) {
                 if (aux.get(j).getCodigo() > aux.get(j + 1).getCodigo()) {
-                    Imovel a = aux.get(i);
+                    Imovel a = aux.get(j);
                     aux.set(j, aux.get(j + 1));
                     aux.set(j + 1, a);
 
@@ -127,19 +128,18 @@ public class ListaDeImoveis implements ListaImoveis {
         return aux;
     }
 
-    
     /**
      * Metodo que ordena a lista por valor.
+     *
      * @return lista, lista ordenada por valor
      */
-    
     @Override
     public List<Imovel> ordenarValor() {
         List<Imovel> aux = new ArrayList<>();
         aux.addAll(this.lista);
         for (int i = 1; i < aux.size(); i++) {
             for (int j = i; j > 0; j--) {
-                if (lista.get(j).getValor()< lista.get(j - 1).getValor()) {
+                if (lista.get(j).getValor() < lista.get(j - 1).getValor()) {
                     Imovel Imo = aux.get(j);
                     aux.add(j, aux.get(j - 1));
                     aux.add(j - 1, Imo);
@@ -148,12 +148,27 @@ public class ListaDeImoveis implements ListaImoveis {
                 }
             }
         }
-      return aux;
-    } 
+        return aux;
+    }
 
     @Override
     public List<Imovel> ordenarArea() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        List<Imovel> aux = new ArrayList<>();
+        aux.addAll(lista);
+        for (int i = 0; i < aux.size(); i++) {
+            int menor = i;
+            for (int j = i + 1; j < aux.size(); j++) {
+                if (aux.get(j).getAreaTotal() < aux.get(menor).getAreaTotal()) {
+                    menor = j;
+                }
+            }
+
+            Imovel imo = aux.get(i);
+            aux.set(i, aux.get(menor));
+            aux.set(menor, imo);
+        }
+        return aux;
     }
 
     /**
