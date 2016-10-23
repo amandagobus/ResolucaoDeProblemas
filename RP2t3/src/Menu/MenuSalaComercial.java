@@ -377,15 +377,14 @@ public class MenuSalaComercial {
 
                     switch (opcao) {
                         case 1:
-                            String s = inString("INFORME O BAIRRO");
+                            String s = inString("INFORME O BAIRRO  ");
                             List imovel =lista.pesquisaBairro(s);
                             System.out.println(imovel.toString());
                             break;
                             
                         case 2:
-                            double d = inDouble("INFORME O VALOR");
+                            double d = inDouble("INFORME O VALOR  ");
                             List imo =lista.pesquisaValor(d);
-                            entrada.nextLine();
                             System.out.println(imo.toString());
                             
                             break;
@@ -397,21 +396,26 @@ public class MenuSalaComercial {
                    break;
                    
                 case 6:
+                    List<Imovel> aux;
                     MenuSalaComercial.menu4();
                     opcao = entrada.nextInt();
                     entrada.nextLine();
 
                     switch (opcao) {
                         case 1:
-                            lista.ordenarCodigo();
+                            aux= lista.ordenarArea();
+                            System.out.println(aux.toString());
+                            
                             break;
                             
                         case 2:
-                            lista.ordenarValor();
-                            
+                            aux= lista.ordenarCodigo();
+                            System.out.println(aux.toString());                           
                             break;
                         case 3:
-                            lista.ordenarArea();
+                            aux = lista.ordenarValor();
+                            System.out.println(aux.toString());
+                            
                             break;
                         default:
                             break;
