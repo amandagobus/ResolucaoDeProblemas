@@ -315,7 +315,6 @@ public class MenuSalaComercial {
     TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
         String caminho = lista.Converte(tipo);
         lista.setCaminho(caminho);
-        lista.lerArquivo();
         if(lista.lerArquivo()==true){
             System.out.println("Arquivos carregados");
         }else {

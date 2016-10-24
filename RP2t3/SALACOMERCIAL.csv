@@ -1,8 +1,4 @@
 CODIGO,LOGRADOURO,NÚMERO,BAIRRO,CIDADE,DESCRIÇÂO,AREA TOTAL,VALOR,NOME DO EDIFICIO, ANDAR, VALOR DO CONDOMINIO,NÚMERO DA SALA, NÚMERO DE BNAHEIRO
-1,Rua F,123,Centro,Alegrete,da,1000.0,1000.0,sol,2,120.0,2,1
-2,Rua F,123,Centro,Alegrete,da,120.0,900.0,sol,2,120.0,2,1
-3,Rua F,123,Centro,Alegrete,da,120.0,1000.0,sol,2,120.0,2,1
-5,Rua F,123,Centro,Alegrete,da,1000.0,1000.0,sol,2,120.0,2,1
-6,Rua F,123,Centro,Alegrete,da,120.0,900.0,sol,2,120.0,2,1
-7,Rua F,123,Centro,Alegrete,da,120.0,1000.0,sol,2,120.0,2,1
-8,Rua F,123,Centro,Alegrete,da,120.0,900.0,sol,2,120.0,2,1
+2,Rua sol,2,2,2,2,2.0,2.0,2,2,2.0,2,2
+3,rua t,3,3,3,3,3.0,3.0,3,3,3.0,3,3
+4,Rua lama,4,4,4,4,4.0,4.0,4,4,4.0,4,4

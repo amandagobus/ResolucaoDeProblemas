@@ -21,6 +21,20 @@ public abstract class Imovel {
     protected double areaTotal;
     protected double valor;
 
+    public Imovel(int codigo, String logradouro, int numero, String bairro,
+            String cidade, String descricao, double areaTotal, double valor) {
+        this.codigo = codigo;
+        this.codigoGeral = codigo + 1;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.descricao = descricao;
+        this.areaTotal = areaTotal;
+        this.valor = valor;
+
+    }
+
     /**
      * Construtor da Super Classe Imovéis
      *
@@ -156,56 +170,51 @@ public abstract class Imovel {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    
-    
-    
-    
+
     //Bloco com os metodos abstratos, USAR em Editar, e para escrver Arquivos.
-    
-    
     double i;
     int k;
     String st;
-    
-    public int getNumeroDeBanheiros(){    
-    return k;
+
+    public int getNumeroDeBanheiros() {
+        return k;
     }
-    
-    public int getNumeroDaSala(){
-    return k;
+
+    public int getNumeroDaSala() {
+        return k;
     }
-    
-    public String getNomeEdificio(){
-    return st;
+
+    public String getNomeEdificio() {
+        return st;
     }
-    
-    public int getAndar(){
-    return k;
+
+    public int getAndar() {
+        return k;
     }
-    
-    public double getValorCondominio(){
-    return i;
+
+    public double getValorCondominio() {
+        return i;
     }
-    
-    public void setNumeroDeBanheiros(int k){    
-   
+
+    public void setNumeroDeBanheiros(int k) {
+
     }
-    
-    public void setNumeroDaSala(int k){
-  
+
+    public void setNumeroDaSala(int k) {
+
     }
-    
-    public void setNomeEdificio(String st){
-    
+
+    public void setNomeEdificio(String st) {
+
     }
-    
-    public void setAndar(int k){
-    
+
+    public void setAndar(int k) {
+
     }
-    
-    public void setValorCondominio(double i){
+
+    public void setValorCondominio(double i) {
     }
-    
+
     public double getAreaConstruida() {
         return i;
     }
@@ -226,14 +235,13 @@ public abstract class Imovel {
 
     public void setAnoConstrucao(int k) {
     }
-    
-    public double getDistCidade(){
+
+    public double getDistCidade() {
         return i;
     }
-    
-    public void setDistCidade(double i){
-    }
 
+    public void setDistCidade(double i) {
+    }
 
     /**
      * Diz como o Objeto imoveis deve se escrever como uma String.
@@ -256,28 +264,28 @@ public abstract class Imovel {
 
         return dados;
     }
-      
-    public String toFileTitulo(){
-    String dados="";
-    dados+="CODIGO,LOGRADOURO,NÚMERO,BAIRRO,CIDADE,DESCRIÇÂO,AREA TOTAL,VALOR,";
-    
-    return dados;
-    
-    
+
+    public String toFileTitulo() {
+        String dados = "";
+        dados += "CODIGO,LOGRADOURO,NÚMERO,BAIRRO,CIDADE,DESCRIÇÂO,AREA TOTAL,VALOR,";
+
+        return dados;
+
     }
-    public String toFile(){
-    String dados = "";
-    dados += codigo+ ","+ logradouro+ ","+numero+ ","+bairro+ ","+cidade+ ","+descricao+ ","+areaTotal+ ","+valor+",";
-    return dados;
+
+    public String toFile() {
+        String dados = "";
+        dados += codigo + "," + logradouro + "," + numero + "," + bairro + "," + cidade + "," + descricao + "," + areaTotal + "," + valor + ",";
+        return dados;
     }
-    
+
     public double getDimensaoFrente(double d) {
-        return i;       
+        return i;
     }
-    
-    public void setDimensaoFrente(double d) {     
-    } 
-    
+
+    public void setDimensaoFrente(double d) {
+    }
+
     public double getDimensaoLado(double d) {
         return i;
     }

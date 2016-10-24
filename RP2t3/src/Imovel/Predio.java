@@ -15,8 +15,22 @@ public abstract class Predio extends Imovel {
     protected String nomeEdificio;
     protected int andar;
     protected double valorCondominio;
+
+    public Predio(int codigo, String logradouro, int numero, String bairro,
+            String cidade, String descricao, double areaTotal, double valor,
+            String nomeEdificio, int andar, double valorCondominio) {
+        super(codigo, logradouro, numero, bairro,
+                cidade, descricao, areaTotal, valor);
+
+        this.nomeEdificio = nomeEdificio;
+        this.andar = andar;
+        this.valorCondominio = valorCondominio;
+
+    }
+
     /**
      * Metodo construtor da class predio.
+     *
      * @param logradouro
      * @param numero
      * @param bairro
@@ -26,9 +40,8 @@ public abstract class Predio extends Imovel {
      * @param valor
      * @param nomeEdificio
      * @param andar
-     * @param valorCondominio 
+     * @param valorCondominio
      */
-
     public Predio(String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor,
             String nomeEdificio, int andar, double valorCondominio) {
@@ -88,10 +101,10 @@ public abstract class Predio extends Imovel {
         this.valorCondominio = valorCondominio;
     }
 
-    
     /**
      * Metodo toString do objeto, predio.
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString() {
@@ -102,27 +115,25 @@ public abstract class Predio extends Imovel {
 
         return dados;
     }
-  
-    
-    
+
     @Override
-    public String toFileTitulo(){
-    String dados = super.toFileTitulo();
-    dados +="NOME DO EDIFICIO, ANDAR, VALOR DO CONDOMINIO,";
-    return dados;
+    public String toFileTitulo() {
+        String dados = super.toFileTitulo();
+        dados += "NOME DO EDIFICIO, ANDAR, VALOR DO CONDOMINIO,";
+        return dados;
     }
-    
+
     /**
      *
      * @return
      */
     @Override
-    public String toFile(){
-    String dados = super.toFile();
-    dados+= nomeEdificio+ ","+andar+ ","+valorCondominio+",";
-    
-    return dados; 
-    
+    public String toFile() {
+        String dados = super.toFile();
+        dados += nomeEdificio + "," + andar + "," + valorCondominio + ",";
+
+        return dados;
+
     }
-    
+
 }
