@@ -8,7 +8,7 @@ package SalaComercial;
 import Imovel.Predio;
 
 /**
- *
+ * Cosntrutor da Classe extende a classe predio.
  * @author Arcano
  */
 public class SalaComercial extends Predio {
@@ -47,18 +47,18 @@ public class SalaComercial extends Predio {
     /**
      * Metodo construtor da class SalaComercial
      *
-     * @param logradouro
-     * @param numero
-     * @param bairro
-     * @param cidade
-     * @param descricao
-     * @param areaTotal
-     * @param valor
-     * @param nomeEdificio
-     * @param andar
-     * @param valorCondominio
-     * @param numeroDeBanheiros
-     * @param numeroDaSala
+     * @param logradouro String
+     * @param numero int
+     * @param bairro String
+     * @param cidade String
+     * @param descricao String
+     * @param areaTotal double
+     * @param valor double
+     * @param nomeEdificio String
+     * @param andar int
+     * @param valorCondominio double
+     * @param numeroDeBanheiros int
+     * @param numeroDaSala int
      */
     public SalaComercial(String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor,
@@ -108,7 +108,7 @@ public class SalaComercial extends Predio {
      * ToString de Sala Comercial, diz ao objeto como se escrever como uma
      * string
      *
-     * @return
+     * @return String, dados
      */
     @Override
     public String toString() {
@@ -120,8 +120,9 @@ public class SalaComercial extends Predio {
     }
 
     /**
-     *
-     * @return
+     * Metodo que como o cabeçalho deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
      */
     @Override
     public String toFileTitulo() {
@@ -130,7 +131,12 @@ public class SalaComercial extends Predio {
 
         return dados;
     }
-
+    
+    /**
+     * Metodo que como o Objeto deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
+     */
     @Override
     public String toFile() {
         String dados = super.toFile();

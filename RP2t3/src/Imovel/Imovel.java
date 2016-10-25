@@ -242,6 +242,22 @@ public abstract class Imovel {
 
     public void setDistCidade(double i) {
     }
+    
+     public double getDimensaoFrente(double d) {
+        return i;
+    }
+
+    public void setDimensaoFrente(double d) {
+    }
+
+    public double getDimensaoLado(double d) {
+        return i;
+    }
+
+    public void setDimensaoLado(double d) {
+    }
+
+
 
     /**
      * Diz como o Objeto imoveis deve se escrever como uma String.
@@ -265,6 +281,11 @@ public abstract class Imovel {
         return dados;
     }
 
+    /**
+     * Metodo que como o cabeçalho deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
+     */
     public String toFileTitulo() {
         String dados = "";
         dados += "CODIGO,LOGRADOURO,NÚMERO,BAIRRO,CIDADE,DESCRIÇÂO,AREA TOTAL,VALOR,";
@@ -273,24 +294,16 @@ public abstract class Imovel {
 
     }
 
+    /**
+     * Metodo que como o Objeto deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
+     */
+    
     public String toFile() {
         String dados = "";
         dados += codigo + "," + logradouro + "," + numero + "," + bairro + "," + cidade + "," + descricao + "," + areaTotal + "," + valor + ",";
         return dados;
     }
-
-    public double getDimensaoFrente(double d) {
-        return i;
-    }
-
-    public void setDimensaoFrente(double d) {
-    }
-
-    public double getDimensaoLado(double d) {
-        return i;
-    }
-
-    public void setDimensaoLado(double d) {
-    }
-
 }
+   

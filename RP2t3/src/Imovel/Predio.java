@@ -7,7 +7,7 @@
 package Imovel;
 
 /**
- *
+ * Construtor da classe abstrada predio, extende a classe mãe Imovel.
  * @author Arcano
  */
 public abstract class Predio extends Imovel {
@@ -31,16 +31,16 @@ public abstract class Predio extends Imovel {
     /**
      * Metodo construtor da class predio.
      *
-     * @param logradouro
-     * @param numero
-     * @param bairro
-     * @param cidade
-     * @param descricao
-     * @param areaTotal
-     * @param valor
-     * @param nomeEdificio
-     * @param andar
-     * @param valorCondominio
+     * @param logradouro String
+     * @param numero int
+     * @param bairro String
+     * @param cidade String
+     * @param descricao String
+     * @param areaTotal double
+     * @param valor double
+     * @param nomeEdificio String
+     * @param andar int
+     * @param valorCondominio double
      */
     public Predio(String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor,
@@ -115,6 +115,13 @@ public abstract class Predio extends Imovel {
 
         return dados;
     }
+    
+    /**
+     * ToString de Sala Comercial, diz ao objeto como se escrever como uma
+     * string
+     *
+     * @return String, dados
+     */
 
     @Override
     public String toFileTitulo() {
@@ -124,8 +131,9 @@ public abstract class Predio extends Imovel {
     }
 
     /**
-     *
-     * @return
+     * Metodo que como o cabeçalho deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
      */
     @Override
     public String toFile() {

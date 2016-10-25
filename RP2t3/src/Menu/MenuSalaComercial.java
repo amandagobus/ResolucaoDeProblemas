@@ -75,8 +75,8 @@ public class MenuSalaComercial {
 
     }
     /**
-     * Metodo que faz a interação com o usuário, passando após as informações
-     * para o construtor.
+     * Metodo que faz a interação com o usuário, recebendo as informações 
+     * passando para o construtor.
      */
     public void IncluirImovel() {
 
@@ -93,18 +93,18 @@ public class MenuSalaComercial {
         int numeroDeBanheiros;
         int numeroDaSala;
 
-        logradouro = inString("Digite o Logradouro:  ");
-        numero = inInt("Digite o Número:  ");
-        bairro = inString("Digite o Bairro:  ");
-        cidade = inString("Digite a Cidade:  ");
-        descricao = inString("Digite Uma Descrição:  ");
-        areaTotal = inDouble("Digite a Área Total:  ");
-        valor = inDouble("Digite o Valor do Imóvel:  ");
-        nomeEdifico = inString("Digite o Nome do Edifício:  ");
-        andar = inInt("Digite o Número do Andar:  ");
-        valorCondominio = inDouble("Digite o Valor do Condominio:  ");
-        numeroDaSala = inInt("Digite o Número da Sala:  ");
-        numeroDeBanheiros = inInt("Digite o Número de Banheiros:  ");
+        logradouro = inString("DIGITE O LOGRADOURO:  ");
+        numero = inInt("DIGITE O NÚMERO:  ");
+        bairro = inString("DIGITE O BAIRRO:  ");
+        cidade = inString("DIGITE A CIDADE:  ");
+        descricao = inString("DIGITE UMA DESCRIÇÃO:  ");
+        areaTotal = inDouble("DIGITE A ARÉA TOTAL:  ");
+        valor = inDouble("DIGITE O VALOR:  ");
+        nomeEdifico = inString("DIGITE O NOME DO EDIFÍCIO:  ");
+        andar = inInt("DIGITE O NÚMERO DO ANDAR: ");
+        valorCondominio = inDouble("DIGITE O VALOR DO CONDOMINIO:  ");
+        numeroDaSala = inInt("DIGITE O NÚMERO DA SALA:  ");
+        numeroDeBanheiros = inInt("DIGITE O NÚMERO DE BANHEIROS:  ");
 
         Imovel salaC = new SalaComercial(logradouro, numero, bairro, cidade,
                 descricao, areaTotal, valor, nomeEdifico, andar, valorCondominio,
@@ -112,11 +112,11 @@ public class MenuSalaComercial {
 
         boolean objeto = lista.incluir(salaC);
 
-        System.out.println("\n\n");
+        System.out.println("\n");
         if (objeto == true) {
-            System.out.println("Imóvel incluido com sucesso.");
+            System.out.println("IMÓVEL INCLUIDO COM SUCESSO: ");
         } else {
-            System.out.println("Imóvel não foi incluido.");
+            System.out.println("IMÓVEL NÃO INCLUIDO:");
         }
         try {
             lista.escreverArquivo();
@@ -158,6 +158,11 @@ public class MenuSalaComercial {
         }
 
     }
+    /**
+     * metodo que recebe as informações que seram editadas.
+     * O usuario pode escolher qual informação será editada.
+     * Se o imovél não existe sai do metod editar.
+     */
 
     public void editarControle() {
 
@@ -309,7 +314,9 @@ public class MenuSalaComercial {
         }
 
     }
-
+/**
+ * Metodo que chama o metodo que carrega arquivos dentro da lista de Imoveis
+ */
     public void Carregar(){
     TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
         String caminho = lista.Converte(tipo);

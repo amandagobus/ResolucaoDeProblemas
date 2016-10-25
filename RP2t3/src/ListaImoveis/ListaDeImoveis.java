@@ -213,10 +213,10 @@ public class ListaDeImoveis implements ListaImoveis {
         try {
             FileWriter outFile = new FileWriter(new File(caminho));
             BufferedWriter escrever = new BufferedWriter(outFile);
-            Imovel mo = lista.get(0);
+            /*Imovel mo = lista.get(0);
             escrever.write(mo.toFileTitulo());
             escrever.write("\r\n");
-
+             */
             for (Imovel imovel : lista) {
                 escrever.write(imovel.toFile());
                 escrever.write("\r\n");
@@ -278,7 +278,7 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(getCaminho()));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            linha = ler.readLine();
+            //linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
