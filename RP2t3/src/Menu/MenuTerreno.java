@@ -41,7 +41,7 @@ public class MenuTerreno {
     public static void menu() {
         System.out.println(" \n");
         System.out.println("***** Menu *****\n");
-        System.out.println("[1] Novo ImÃ³vel Terreno ");
+        System.out.println("[1] Novo Imóvel Terreno ");
         System.out.println("[2] Consultar ");
         System.out.println("[3] Editar ");
         System.out.println("[4] Excluir ");
@@ -143,7 +143,7 @@ public class MenuTerreno {
      * por código se o objeto esta na listaImoveis.
      */
     public void Consultar() {
-        System.out.println("Digite o código Que Deseja Consultar: ");
+        System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
 
@@ -183,7 +183,7 @@ public class MenuTerreno {
         System.out.println("\n");
         System.out.println("***********  MENU EDITAR ************ ");
         System.out.println("\n ");
-        System.out.println("Digite o Código do Imóvel que deseja editar: ");
+        System.out.println("Digite o Código do Imóvel que Deseja Editar: ");
         int codigoConsulta = entrada.nextInt();
         entrada.nextLine();
         Imovel editarLista = lista.consultar(codigoConsulta);
@@ -292,9 +292,9 @@ public class MenuTerreno {
         lista.setCaminho(caminho);
         lista.lerArquivo();
         if(lista.lerArquivo()==true){
-            System.out.println("Arquivos carregados ");
+            System.out.println("Arquivos Carregados ");
         }else {
-            System.out.println("Arquivo não iniciados ");
+            System.out.println("Arquivo não Iniciados ");
         }
     
     }
@@ -353,14 +353,14 @@ public class MenuTerreno {
 
                     switch (opcao) {
                         case 1:
-                            String s = inString("Informe o Bairro:  ");
-                            List imovel =lista.pesquisaBairro(s);
+                            String s = inString(" Informe o Bairro:  ");
+                            List imovel = lista.pesquisaBairro(s);
                             System.out.println(imovel.toString());
                             break;
                             
                         case 2:
-                            double d = inDouble("Informe o Valor:  ");
-                            List imo =lista.pesquisaValor(d);
+                            double d = inDouble(" Informe o Valor:  ");
+                            List imo = lista.pesquisaValor(d);
                             System.out.println(imo.toString());
                             
                             break;
@@ -372,26 +372,26 @@ public class MenuTerreno {
                    break;
                    
                 case 6:
+                    List<Imovel> aux;
                     MenuTerreno.menu4();
                     opcao = entrada.nextInt();
                     entrada.nextLine();
 
                     switch (opcao) {
                         case 1:
-                            List <Imovel> aux = lista.ordenarArea();
+                            aux= lista.ordenarArea();
                             System.out.println(aux.toString());
                             
                             break;
                             
                         case 2:
-                            aux = lista.ordenarCodigo();
-                            System.out.println(aux.toString());                           
+                            aux= lista.ordenarCodigo();
+                            System.out.println(aux.toString());                          
                             break;
                             
                         case 3:
-                            List<Imovel> aux1 = lista.ordenarValor();
-                            System.out.println("rp");
-                            System.out.println(aux1.toString());
+                            aux = lista.ordenarValor();
+                            System.out.println(aux.toString());
                             
                             break;
                         default:
@@ -399,7 +399,7 @@ public class MenuTerreno {
                     }
                     break;
                 default:
-                    System.out.println("Opção Inválida ");
+                    System.out.println("Opção Inválida! ");
 
             }
 

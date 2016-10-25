@@ -130,7 +130,6 @@ public class ListaDeImoveis implements ListaImoveis {
 
     /**
      * Metodo que ordena a lista por valor.
-     *
      * @return lista, lista ordenada por valor
      */
     @Override
