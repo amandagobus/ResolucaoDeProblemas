@@ -30,8 +30,8 @@ public class MenuTerreno {
         System.out.println("***** Menu *****\n");
         System.out.println("[1] Novo Imóvel Terreno ");
         System.out.println("[2] Consultar");
-        //System.out.println("[3] Editar ");
-        //System.out.println("[4] Excluir");
+        System.out.println("[3] Editar ");
+        System.out.println("[4] Excluir");
         System.out.println("[0] Voltar ");
         System.out.println(" ");
         System.out.print("Opção:    ");
