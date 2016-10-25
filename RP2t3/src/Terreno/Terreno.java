@@ -8,12 +8,11 @@ package Terreno;
 import Imovel.Imovel;
 
 /**
- * Classe para objetos do tipo Terreno, onde serão contidos valores e métodos para o mesmo.
+ * Classe para objetos do tipo Terreno, onde serÃ£o contidos valores e mÃ©todos para o mesmo.
  * @author Julielen
  */
 public class Terreno extends Imovel {
 
-    
     private double dimensaoFrente;
     private double dimensaoLado;
     
@@ -34,7 +33,6 @@ public class Terreno extends Imovel {
         super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.dimensaoFrente = dimensaoFrente;
         this.dimensaoLado = dimensaoLado;
-
     }
 
     /**
@@ -47,6 +45,7 @@ public class Terreno extends Imovel {
     /**
      * @param dimensaoFrente the dimensaoFrente to set
      */
+    @Override
     public void setDimensaoFrente(double dimensaoFrente) {
         this.dimensaoFrente = dimensaoFrente;
     }
@@ -61,6 +60,7 @@ public class Terreno extends Imovel {
     /**
      * @param dimensaoLado the dimensaoLado to set
      */
+    @Override
     public void setDimensaoLado(double dimensaoLado) {
         this.dimensaoLado = dimensaoLado;
     }
@@ -71,10 +71,29 @@ public class Terreno extends Imovel {
     @Override
     public String toString() {
         String dados = super.toString();
-        dados += "Dimensão de Frente: " + dimensaoFrente + "\n";
-        dados += "Dimensão de Lado: " + dimensaoLado + "\n";
+        dados += "Dimensão Frente: " + dimensaoFrente + "\n";
+        dados += "Dimensão Lado: " + dimensaoLado + "\n";
 
         return dados;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toFileTitulo(){
+    String dados = super.toFileTitulo();
+    dados += "Dimensão Frente, Dimensão Lado";
+    
+    return dados;
+    }
+    
+    @Override
+    public String toFile(){
+    String dados = super.toFile();
+    dados +=dimensaoFrente+","+dimensaoLado;
+    return dados;
     }
 
 }
