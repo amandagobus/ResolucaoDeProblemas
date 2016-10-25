@@ -131,8 +131,7 @@ public class MenuSalaComercial {
      */
     public void Consultar() {
         
-        System.out.println("\n");
-        System.out.println("Digite o Código Que Deseja Consultar: ");
+        System.out.println("DIGITE O CODIGO DO IMOVÉL: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
 
@@ -140,7 +139,7 @@ public class MenuSalaComercial {
             System.out.println(Imo.toString());
 
         } else if (Imo == null) {
-            System.out.println("Imóvel Não Cadastrado;");
+            System.out.println("IMÓVEL NÃO CADASTRADO: ");
         }
 
     }
@@ -209,7 +208,7 @@ public class MenuSalaComercial {
                         break;
                     case 2:
 
-                        System.out.print("\n\n");
+                        System.out.print("\n");
                         i = inInt("DIGITE O NÚEMRO:  ");
                         editarLista.setNumero(i);
 
