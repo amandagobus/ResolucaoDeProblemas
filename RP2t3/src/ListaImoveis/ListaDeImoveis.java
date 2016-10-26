@@ -277,7 +277,7 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(getCaminho()));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            //linha = ler.readLine();
+           
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
