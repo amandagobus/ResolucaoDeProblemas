@@ -6,6 +6,7 @@
 package Terreno;
 
 import Imovel.Imovel;
+import Imovel.TipoDeImovel;
 
 /**
  * Classe para objetos do tipo Terreno, onde serÃ£o contidos valores e mÃ©todos para o mesmo.
@@ -29,7 +30,8 @@ public class Terreno extends Imovel {
      * @param dimensaoLado 
      */
 
-    public Terreno(String logradouro, int numero, String bairro, String cidade, String descricao, double areaTotal, double valor, double dimensaoFrente, double dimensaoLado) {
+    public Terreno(String logradouro, int numero, String bairro, String cidade, String descricao, 
+            double areaTotal, double valor, double dimensaoFrente, double dimensaoLado) {
         super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
         this.dimensaoFrente = dimensaoFrente;
         this.dimensaoLado = dimensaoLado;
@@ -66,7 +68,7 @@ public class Terreno extends Imovel {
     }
      /**
      * ToString de Terreno, diz ao objeto como se escrever como uma string
-     * @return 
+     * @return Strings, dados
      */
     @Override
     public String toString() {
@@ -78,22 +80,27 @@ public class Terreno extends Imovel {
     }
     
     /**
-     *
-     * @return
+     * Metodo que como o cabeçalho deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
      */
     @Override
     public String toFileTitulo(){
     String dados = super.toFileTitulo();
-    dados += "Dimensão Frente, Dimensão Lado";
-    
+    dados += "Dimensão Frente, Dimensão Lado"; 
     return dados;
     }
     
+    /**
+     * Metodo que como o Objeto deve se formatar para ser escrito 
+     * no arquivo CSV
+     * @return Dados, String 
+     */
     @Override
     public String toFile(){
-    String dados = super.toFile();
-    dados +=dimensaoFrente+","+dimensaoLado;
-    return dados;
+        String dados = super.toFile();
+        dados +=dimensaoFrente+","+dimensaoLado;
+        return dados;
     }
 
 }

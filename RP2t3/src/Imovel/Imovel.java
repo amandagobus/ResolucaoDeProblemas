@@ -298,8 +298,7 @@ public abstract class Imovel {
      * Metodo que como o Objeto deve se formatar para ser escrito 
      * no arquivo CSV
      * @return Dados, String 
-     */
-    
+     */ 
     public String toFile() {
         String dados = "";
         dados += codigo + "," + logradouro + "," + numero + "," + bairro + "," + cidade + "," + descricao + "," + areaTotal + "," + valor + ",";
