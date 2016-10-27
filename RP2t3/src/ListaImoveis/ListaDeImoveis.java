@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import Imovel.ListaImoveis;
 import Imovel.TipoDeImovel;
+import Menu.MenuApartamento;
+import Menu.MenuCasa;
 import Menu.MenuSalaComercial;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -446,7 +448,7 @@ public class ListaDeImoveis implements ListaImoveis {
             outFile.close();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return false;
@@ -469,7 +471,7 @@ public class ListaDeImoveis implements ListaImoveis {
             outFile.close();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuCasa.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return false;
