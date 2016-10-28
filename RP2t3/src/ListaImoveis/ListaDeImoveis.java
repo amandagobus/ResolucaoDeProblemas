@@ -588,7 +588,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 dimensaoLado = Integer.parseInt(parte[9]);
 
                 terreno = new Terreno (logradouro, numero, bairro, cidade, descricao, areaTotal,
-                        valor, descricao, valor, dimensaoFrente, dimensaoLado);
+                        valor, dimensaoFrente, dimensaoLado);
                 incluir(terreno);
 
             }
