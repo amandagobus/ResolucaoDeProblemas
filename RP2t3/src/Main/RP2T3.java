@@ -30,9 +30,11 @@ public class RP2T3 {
         MenuChacara chacara = new MenuChacara();
         int op = 1;
         Scanner entrada = new Scanner(System.in);
+        Ap.Carregar();
         casa.Carregar();
         chacara.Carregar();
         salaC.Carregar();
+        terreno.Carregar();
         while (op != 0) {
             System.out.println(" ");
             System.out.println("******** BEM VINDO AO MENU ********");

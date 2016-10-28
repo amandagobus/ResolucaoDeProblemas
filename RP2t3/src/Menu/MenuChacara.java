@@ -11,6 +11,7 @@ import Chacara.Chacara;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
+import Imovel.TipoDeImovel;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -55,18 +56,19 @@ public class MenuChacara {
     
     
     
-    public void Carregar() {
-     
-        
-        try {
-            lista.lerChacara();
-        } catch (IOException ex) {
-            Logger.getLogger(MenuChacara.class.getName()).log(Level.SEVERE, null, ex);
+   public void Carregar() {
+        TipoDeImovel tipo = TipoDeImovel.CHACARA;
+        String caminho = lista.Converte(tipo);
+        lista.setCaminho(caminho);
+        lista.lerArquivo();
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
         }
-        
-        
 
     }
+
 
     /**
      *Esse método recebe informações do usuário e passa para o construtor (parâmetros)
@@ -121,7 +123,7 @@ public class MenuChacara {
             System.out.println("Imóvel não foi incluido!");
         }
         try {
-            lista.gravarChacara();
+            lista.escreverArquivo();
         } catch (Exception ex) {
             Logger.getLogger(MenuChacara.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -340,7 +342,7 @@ public class MenuChacara {
             lista.editar(codigoConsulta, editarLista);
             System.out.println(" --- ");
             try {
-                lista.gravarChacara();
+                lista.escreverArquivo();
             } catch (Exception ex) {
                 Logger.getLogger(Chacara.class.getName()).log(Level.SEVERE, null, ex);
             }
