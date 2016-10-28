@@ -78,4 +78,12 @@ public class Casa extends Residencia {
 
         return dados;
     }
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile();
+        dados += numeroQuartos+ "," + tipo;
+        return dados;
+    }
+    
 }

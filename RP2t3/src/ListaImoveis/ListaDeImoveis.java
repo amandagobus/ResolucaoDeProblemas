@@ -237,11 +237,19 @@ public class ListaDeImoveis implements ListaImoveis {
     @Override
     public boolean lerArquivo() {
         if (tipo.getValor() == 1) {
-            //chamar metodo de ler apartamamento
+            try {
+                lerApartamento();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         }
         if (tipo.getValor() == 2) {
-            //Chama metodo de ler casa
+            try {
+                lerCasa();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         }
         if (tipo.getValor() == 3) {
@@ -251,7 +259,7 @@ public class ListaDeImoveis implements ListaImoveis {
         if (tipo.getValor() == 4) {
 
             try {
-                lerSala();
+                lerSalaComercial();
             } catch (IOException ex) {
                 Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -267,7 +275,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-    public boolean lerSala() throws FileNotFoundException, IOException {
+    public boolean lerSalaComercial() throws FileNotFoundException, IOException {
 
         File file = new File(caminho);
 
@@ -381,7 +389,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     public boolean lerApartamento() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Apartamento.csv");
+        File file = new File(caminho);
 
         if (file.exists()) {
             FileInputStream arquivo;
@@ -395,10 +403,9 @@ public class ListaDeImoveis implements ListaImoveis {
             int numeroDoApartamento;
 
             Imovel sala;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);

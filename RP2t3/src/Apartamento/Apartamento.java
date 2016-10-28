@@ -120,5 +120,12 @@ public class Apartamento extends Predio {
 
         return dados;
     }
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile();
+        dados += numeroQuartos+ "," + numeroDoApartamento + "," + anoDeConstrucao + "," + numeroVagas;
+        return dados;
+    }
 
 }

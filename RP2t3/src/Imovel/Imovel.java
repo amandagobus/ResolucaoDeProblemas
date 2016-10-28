@@ -304,5 +304,10 @@ public abstract class Imovel {
         dados += codigo + "," + logradouro + "," + numero + "," + bairro + "," + cidade + "," + descricao + "," + areaTotal + "," + valor + ",";
         return dados;
     }
+    
+    
+    
+    
+    
 }
    

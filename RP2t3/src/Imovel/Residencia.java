@@ -97,5 +97,12 @@ public abstract class Residencia extends Imovel {
 
         return dados;
     }
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile();
+        dados += areaConstruida + "," + numeroQuartos + "," + anoConstrucao + ",";
+        return dados;
+    }
 
 }

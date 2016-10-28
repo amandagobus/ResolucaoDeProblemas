@@ -171,7 +171,7 @@ public class MenuApartamento {
 
         boolean objeto = lista.incluir(apartamento);
         try {
-            lista.gravarApartamento();
+            lista.escreverArquivo();
         } catch (Exception ex) {
             Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
         }
