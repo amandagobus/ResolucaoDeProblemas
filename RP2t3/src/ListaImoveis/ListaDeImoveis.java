@@ -228,7 +228,7 @@ public class ListaDeImoveis implements ListaImoveis {
             outFile.close();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return false;
@@ -349,7 +349,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     public boolean lerChacara() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Chacara.csv");
+        File file = new File(caminho);
 
         if (file.exists()) {
             FileInputStream arquivo;
@@ -358,7 +358,7 @@ public class ListaDeImoveis implements ListaImoveis {
             int codigo, numero, andar, numeroQuartos, anoConstrucao;
             double areaTotal, valor, areaConstruida, distCidade;
             Imovel chacara;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Chacara.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
            while ((linha = ler.readLine()) != null) {
@@ -582,8 +582,7 @@ public class ListaDeImoveis implements ListaImoveis {
             double areaTotal, valor, dimensaoFrente, dimensaoLado;
           
             Imovel terreno;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") 
-                    + System.getProperty("file.separator") + "Terreno.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
             while ((linha = ler.readLine()) != null) {
