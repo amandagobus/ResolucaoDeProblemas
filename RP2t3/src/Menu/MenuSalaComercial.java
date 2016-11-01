@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class MenuSalaComercial {
 
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     Scanner entrada = new Scanner(System.in);
 
     public static void menu() {
@@ -320,10 +320,12 @@ public class MenuSalaComercial {
 /**
  * Metodo que chama o metodo que carrega arquivos dentro da lista de Imoveis
  */
-    public void Carregar(){
-    TipoDeImovel tipo = TipoDeImovel.SALACOMERCIAL;
-        String caminho = lista.Converte(tipo);
-        lista.setCaminho(caminho);
+    public void carregarArquivos(){
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.SALACOMERCIAL;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
         if(lista.lerArquivo()==true){
             System.out.println("Arquivos carregados");
         }else {

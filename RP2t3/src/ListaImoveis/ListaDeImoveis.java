@@ -39,10 +39,16 @@ import java.util.logging.Logger;
  */
 public class ListaDeImoveis implements ListaImoveis {
 
-    List<Imovel> lista = new ArrayList<>();
+    List<Imovel> lista;
     private TipoDeImovel tipo;
     private String caminho;
 
+
+public ListaDeImoveis(String caminho, TipoDeImovel tipo){
+           lista = new ArrayList<>();
+    this.caminho = caminho;
+    this.tipo = tipo;
+}
     /**
      * @return the caminho
      */
@@ -55,12 +61,6 @@ public class ListaDeImoveis implements ListaImoveis {
      */
     public void setCaminho(String caminho) {
         this.caminho = caminho;
-    }
-
-    public String Converte(TipoDeImovel tipo) {
-        this.tipo = tipo;
-        this.caminho = "";
-        return System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv";
     }
 
     public TipoDeImovel getTipo() {
@@ -432,7 +432,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 anoDeConstrucao = Integer.parseInt(parte[13]);
                 numeroDoApartamento = Integer.parseInt(parte[14]);
 
-                Apartamento ap = new Apartamento(logradouro, numero, bairro,
+                Apartamento ap = new Apartamento(codigo,logradouro, numero, bairro,
                         cidade, descricao, areaTotal, valor, nomeEdificio, andar,
                         valorCondominio, numeroQuartos, numeroVagas,
                         anoDeConstrucao, numeroDoApartamento);

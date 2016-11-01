@@ -28,7 +28,7 @@ public class MenuTerreno {
     
     
     Terreno terreno;
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
@@ -289,9 +289,11 @@ public class MenuTerreno {
 
     }
 
-    public void Carregar(){
-    TipoDeImovel tipo = TipoDeImovel.TERRENO;
-        String caminho = lista.Converte(tipo);
+    public void carregarArquivos(){TipoDeImovel tipo;
+        tipo = TipoDeImovel.TERRENO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
         lista.setCaminho(caminho);
       
         if(lista.lerArquivo()==true){

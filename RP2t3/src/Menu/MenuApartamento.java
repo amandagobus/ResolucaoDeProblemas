@@ -26,10 +26,11 @@ import java.util.logging.Logger;
 public class MenuApartamento {
 
     Apartamento apartamento;
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
+    
 
     /**
      * Método chamado menu, que exibe as opções Novo Imóvel e Consultar
@@ -99,10 +100,12 @@ public class MenuApartamento {
 
     }
 
-    public void Carregar() {
-        TipoDeImovel tipo = TipoDeImovel.APARTAMENTO;
-        String caminho = lista.Converte(tipo);
-        lista.setCaminho(caminho);
+    public void carregarArquivos() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.APARTAMENTO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
         if (lista.lerArquivo() == true) {
             System.out.println("Arquivos carregados");
         } else {
