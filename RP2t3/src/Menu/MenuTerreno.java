@@ -149,7 +149,10 @@ public class MenuTerreno {
 
         if ((Imo != null) && (Imo instanceof Terreno)) {
             System.out.println("=======================================");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
             System.out.println(Imo.toString());
+            System.out.println("=======================================");
+
 
         } else if (Imo == null) {
             System.out.println("Imóvel Não Cadastrado;");
@@ -290,7 +293,7 @@ public class MenuTerreno {
     TipoDeImovel tipo = TipoDeImovel.TERRENO;
         String caminho = lista.Converte(tipo);
         lista.setCaminho(caminho);
-        lista.lerArquivo();
+      
         if(lista.lerArquivo()==true){
             System.out.println("Arquivos Carregados ");
         }else {

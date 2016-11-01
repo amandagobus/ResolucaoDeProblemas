@@ -6,12 +6,15 @@
 package ListaImoveis;
 
 import Apartamento.Apartamento;
+import Casa.Casa;
 import Chacara.Chacara;
 import Imovel.Imovel;
 import SalaComercial.SalaComercial;
 import java.util.ArrayList;
 import java.util.List;
 import Imovel.ListaImoveis;
+import Imovel.Tipo;
+import static Imovel.Tipo.RESIDENCIAL;
 import Imovel.TipoDeImovel;
 import Menu.MenuApartamento;
 import Menu.MenuCasa;
@@ -134,6 +137,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     /**
      * Metodo que ordena a lista por valor.
+     *
      * @return lista, lista ordenada por valor
      */
     @Override
@@ -216,10 +220,7 @@ public class ListaDeImoveis implements ListaImoveis {
         try {
             FileWriter outFile = new FileWriter(new File(caminho));
             BufferedWriter escrever = new BufferedWriter(outFile);
-            /*Imovel mo = lista.get(0);
-            escrever.write(mo.toFileTitulo());
-            escrever.write("\r\n");
-             */
+
             for (Imovel imovel : lista) {
                 escrever.write(imovel.toFile());
                 escrever.write("\r\n");
@@ -271,7 +272,11 @@ public class ListaDeImoveis implements ListaImoveis {
             return true;
         }
         if (tipo.getValor() == 5) {
-            //Chama metodo de Ler terreno
+            try {
+                lerTerreno();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             return true;
         }
@@ -293,7 +298,6 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(getCaminho()));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-           
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -310,7 +314,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 numeroSala = Integer.parseInt(parte[11]);
                 NumeroBanheiro = Integer.parseInt(parte[12]);
 
-                sala = new SalaComercial(codigo,logradouro, numero, bairro, cidade,
+                sala = new SalaComercial(codigo, logradouro, numero, bairro, cidade,
                         descricao, areaTotal, valor, nomeEdificio, andar,
                         valorCondominio, NumeroBanheiro, numeroSala);
                 incluir(sala);
@@ -346,7 +350,6 @@ public class ListaDeImoveis implements ListaImoveis {
         outFile.close();
 
     }*/
-
     public boolean lerChacara() throws FileNotFoundException, IOException {
 
         File file = new File(caminho);
@@ -361,7 +364,7 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-           while ((linha = ler.readLine()) != null) {
+            while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
                 logradouro = parte[1];
@@ -408,7 +411,7 @@ public class ListaDeImoveis implements ListaImoveis {
             Imovel sala;
             arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
-          // linha = ler.readLine();
+            // linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -429,9 +432,10 @@ public class ListaDeImoveis implements ListaImoveis {
                 anoDeConstrucao = Integer.parseInt(parte[13]);
                 numeroDoApartamento = Integer.parseInt(parte[14]);
 
-                Apartamento ap = new Apartamento(logradouro, numero, bairro, cidade,
-                        descricao, areaTotal, valor, nomeEdificio, andar,
-                        valorCondominio, numeroQuartos, numeroVagas, anoDeConstrucao, numeroDoApartamento);
+                Apartamento ap = new Apartamento(logradouro, numero, bairro,
+                        cidade, descricao, areaTotal, valor, nomeEdificio, andar,
+                        valorCondominio, numeroQuartos, numeroVagas,
+                        anoDeConstrucao, numeroDoApartamento);
                 incluir(ap);
 
             }
@@ -442,7 +446,8 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-/*
+
+    /*
     public boolean gravarApartamento() {
 
         try {
@@ -489,7 +494,7 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-*/
+     */
     public boolean lerCasa() throws FileNotFoundException, IOException {
 
         File file = new File(caminho);
@@ -497,11 +502,11 @@ public class ListaDeImoveis implements ListaImoveis {
         if (file.exists()) {
             FileInputStream arquivo;
             BufferedReader ler;
-            String linha, logradouro, bairro, cidade, descricao;
+            String linha, logradouro, bairro, cidade, descricao, pegarTipo;
             int codigo, numero;
             double areaTotal, valor;
 
-            int tipo;
+            Tipo tipo;
             double areaConstruida;
             int numeroQuartos;
             int anoConstrucao;
@@ -512,7 +517,6 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -527,11 +531,20 @@ public class ListaDeImoveis implements ListaImoveis {
                 numeroQuartos = Integer.parseInt(parte[9]);
                 anoConstrucao = Integer.parseInt(parte[10]);
                 numeroDeVagas = Integer.parseInt(parte[11]);
-                tipo = parseInt(parte[12]);
+                pegarTipo = parte[12];
 
-                Apartamento ap = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal, valor, descricao, tipo, valor, numeroDeVagas, anoConstrucao, numeroDeVagas, numeroQuartos);
-                incluir(ap);
+                if (pegarTipo.equalsIgnoreCase("residencial")) {
+                    tipo = Tipo.RESIDENCIAL;
+                } else {
 
+                    tipo = Tipo.COMERCIAL;
+
+                }
+
+                Casa c = new Casa(codigo, logradouro, numero, bairro, cidade,
+                        descricao, numero, valor, areaConstruida, numeroQuartos,
+                        anoConstrucao, tipo, numeroDeVagas);
+                incluir(c);
             }
             ler.close();
             arquivo.close();
@@ -540,11 +553,11 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-   
+
     /*
     *Método que cria um arquivo e grava o imovel terreno
-    */
-    /*
+     */
+ /*
     public boolean gravarTerreno() {
 
         try {
@@ -568,7 +581,7 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-*/
+     */
 
     public boolean lerTerreno() throws FileNotFoundException, IOException {
 
@@ -580,7 +593,7 @@ public class ListaDeImoveis implements ListaImoveis {
             String linha, logradouro, bairro, cidade, descricao;
             int codigo, numero;
             double areaTotal, valor, dimensaoFrente, dimensaoLado;
-          
+
             Imovel terreno;
             arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
@@ -598,7 +611,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 dimensaoFrente = Double.parseDouble(parte[8]);
                 dimensaoLado = Double.parseDouble(parte[9]);
 
-                terreno = new Terreno (logradouro, numero, bairro, cidade, descricao, areaTotal,
+                terreno = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal,
                         valor, dimensaoFrente, dimensaoLado);
                 incluir(terreno);
 

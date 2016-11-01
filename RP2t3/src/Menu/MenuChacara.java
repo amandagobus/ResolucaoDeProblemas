@@ -60,8 +60,7 @@ public class MenuChacara {
         TipoDeImovel tipo = TipoDeImovel.CHACARA;
         String caminho = lista.Converte(tipo);
         lista.setCaminho(caminho);
-        lista.lerArquivo();
-        if (lista.lerArquivo() == true) {
+      if (lista.lerArquivo() == true) {
             System.out.println("Arquivos carregados");
         } else {
             System.out.println("Arquivo não iniciados");
@@ -141,7 +140,10 @@ public class MenuChacara {
         entrada.nextLine();
 
         if ((Imo != null) && (Imo instanceof Chacara)) {
+            System.out.println("=======================================");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
             System.out.println(Imo.toString());
+            System.out.println("=======================================");
 
         } else if (Imo == null) {
             System.out.println("Imóvel Não Cadastrado;");

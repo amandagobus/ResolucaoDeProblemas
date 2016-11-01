@@ -37,7 +37,16 @@ public abstract class Residencia extends Imovel {
         this.numeroQuartos = numeroQuartos;
         this.anoConstrucao = anoConstrucao;
     }
+    
+    public Residencia(int codigo, String logradouro, int numero, String bairro,
+            String cidade, String descricao, double areaTotal, double valor,
+            double areaConstruida, int numeroQuartos, int anoConstrucao) {
 
+        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
+        this.areaConstruida = areaConstruida;
+        this.numeroQuartos = numeroQuartos;
+        this.anoConstrucao = anoConstrucao;
+    }
     /**
      * get AreaConstruida
      *

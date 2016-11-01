@@ -11,7 +11,7 @@ package Imovel;
  */
 public enum Tipo {
 
-    RESIDECIAL(1), COMERCIAL(2);
+    RESIDENCIAL(1), COMERCIAL(2);
 
     int valor;
 

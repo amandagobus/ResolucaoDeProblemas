@@ -136,7 +136,10 @@ public class MenuSalaComercial {
         entrada.nextLine();
 
         if ((Imo != null) && (Imo instanceof SalaComercial)) {
+            System.out.println("=======================================");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
             System.out.println(Imo.toString());
+            System.out.println("=======================================");
 
         } else if (Imo == null) {
             System.out.println("IMÓVEL NÃO CADASTRADO: ");

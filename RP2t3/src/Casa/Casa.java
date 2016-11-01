@@ -31,8 +31,36 @@ public class Casa extends Residencia {
      * @param anoConstucao
      * @param numeroDeVagas
      */
-    public Casa(String logradouro, int numero, String bairro, String cidade, String descricao, int areaTotal, double valor, double areaConstruida, int numeroQuartos, int anoConstucao, Tipo tipo, int numeroDeVagas) {
-        super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor, areaConstruida, numeroQuartos, anoConstucao);
+    public Casa(String logradouro, int numero, String bairro, String cidade, 
+            String descricao, int areaTotal, double valor, double areaConstruida,
+            int numeroQuartos, int anoConstucao, Tipo tipo, int numeroDeVagas) {
+        super(logradouro, numero, bairro, cidade, descricao, areaTotal, valor,
+                areaConstruida, numeroQuartos, anoConstucao);
+        this.tipo = tipo;
+        this.numeroDeVagas = numeroDeVagas;
+    }
+    /**
+     * 
+     * @param codigo
+     * @param logradouro
+     * @param numero
+     * @param bairro
+     * @param cidade
+     * @param descricao
+     * @param areaTotal
+     * @param valor
+     * @param areaConstruida
+     * @param numeroQuartos
+     * @param anoConstucao
+     * @param tipo
+     * @param numeroDeVagas 
+     */
+     public Casa(int codigo, String logradouro, int numero, String bairro,
+             String cidade, String descricao, int areaTotal, double valor, 
+             double areaConstruida, int numeroQuartos, int anoConstrucao,
+             Tipo tipo, int numeroDeVagas) {
+        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, 
+                valor, areaConstruida, numeroQuartos, anoConstrucao);
         this.tipo = tipo;
         this.numeroDeVagas = numeroDeVagas;
     }

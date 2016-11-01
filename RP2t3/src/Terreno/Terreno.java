@@ -36,6 +36,25 @@ public class Terreno extends Imovel {
         this.dimensaoFrente = dimensaoFrente;
         this.dimensaoLado = dimensaoLado;
     }
+    /**
+     * 
+     * @param codigo
+     * @param logradouro
+     * @param numero
+     * @param bairro
+     * @param cidade
+     * @param descricao
+     * @param areaTotal
+     * @param valor
+     * @param dimensaoFrente
+     * @param dimensaoLado 
+     */
+    public Terreno(int codigo,String logradouro, int numero, String bairro, String cidade, String descricao, 
+            double areaTotal, double valor, double dimensaoFrente, double dimensaoLado) {
+        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor);
+        this.dimensaoFrente = dimensaoFrente;
+        this.dimensaoLado = dimensaoLado;
+    }
 
     /**
      * @return the dimensaoFrente
