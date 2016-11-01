@@ -112,13 +112,13 @@ public class MenuTerreno {
 
         logradouro = inString("Digite o Logradouro:  ");
 
-        numero = inInt("Digite o numero: ");
+        numero = inInt("Digite o Número: ");
 
         bairro = inString("Digite o Bairro:  ");
 
         cidade = inString("Digite a Cidade:  ");
 
-        descricao = inString("Digite Uma Descriçãoo:  ");
+        descricao = inString("Digite Uma Descrição:  ");
 
         areaTotal = inDouble("Digite a Área Total:  ");
 
@@ -137,7 +137,7 @@ public class MenuTerreno {
         if (objeto == true) {
             System.out.println("Imóvel incluído com sucesso.");
         } else {
-            System.out.println("Imóvel não foi incluído.");
+            System.out.println("Imóvel não incluído.");
         }
         try {
             lista.escreverArquivo();
@@ -164,7 +164,7 @@ public class MenuTerreno {
             System.out.println("=======================================");
 
         } else if (Imo == null) {
-            System.out.println("Imóvel Não Cadastrado;");
+            System.out.println("Imóvel Não Cadastrado");
 
         }
     }
@@ -219,7 +219,7 @@ public class MenuTerreno {
                 System.out.println("5) Descrição ");
                 System.out.println("6) Área Total ");
                 System.out.println("7) Valor ");
-                System.out.println("8)Dimensão Frente ");
+                System.out.println("8) Dimensão Frente ");
                 System.out.println("9) Dimensão Lado ");
                 System.out.println("0) Voltar ao Menu Anterior ");
                 System.out.println(" \n");
