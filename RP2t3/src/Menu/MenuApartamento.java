@@ -220,6 +220,8 @@ public class MenuApartamento {
         return inInt("Digite o código do imóvel: ");
     }
 
+   
+
     /**
      * Método de ordenar
      */
@@ -352,7 +354,7 @@ public class MenuApartamento {
             }
 
         } else {
-            System.out.println("\n IMÓVEL NÂO ENCONTRADO ");
+            System.out.println("\n IMÓVEL NÃO ENCONTRADO ");
         }
 
     }
@@ -367,4 +369,5 @@ public class MenuApartamento {
         lista.excluir(codigo);
 
     }
+   
 }
