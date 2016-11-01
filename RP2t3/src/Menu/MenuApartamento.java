@@ -350,7 +350,7 @@ public class MenuApartamento {
             }
 
         } else {
-            System.out.println("\n IMÓVEL NÂO ENCONTRADO ");
+            System.out.println("\n IMÓVEL NÃO ENCONTRADO ");
         }
 
     }
