@@ -38,7 +38,6 @@ public abstract class Imovel {
     /**
      * Construtor da Super Classe Imovéis
      *
-     * @param codigo
      * @param logradouro
      * @param numero
      * @param bairro

@@ -10,7 +10,6 @@ import Apartamento.Apartamento;
 import Casa.Casa;
 import Chacara.Chacara;
 import static Imovel.EntradasTeclado.div;
-import static Imovel.EntradasTeclado.inInt;
 import Imovel.Imovel;
 import SalaComercial.SalaComercial;
 import java.util.ArrayList;
@@ -36,13 +35,13 @@ import java.util.logging.Logger;
  */
 public class ListaDeImoveis implements ListaImoveis {
 
-    List<Imovel> lista;
+    private List<Imovel> lista;
     private TipoDeImovel tipo;
     private String caminho;
 
 
 public ListaDeImoveis(String caminho, TipoDeImovel tipo){
-           lista = new ArrayList<>();
+    lista = new ArrayList<>();
     this.caminho = caminho;
     this.tipo = tipo;
 }
@@ -191,7 +190,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
     /**
      * Metodo que pesquisa um Imovel pelo valor
      *
-     * @param bairro, informado pelo usuario
+     * @param valor, informado pelo usuario
      * @return uma lista de Imóvel, cujo valor seja menor ou igual ao valor
      * informado
      */
