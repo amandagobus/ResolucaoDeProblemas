@@ -26,8 +26,23 @@ public class MenuChacara {
     ListaDeImoveis lista;
     Scanner entrada = new Scanner(System.in);
 
+    public MenuChacara() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.CHACARA;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
+        }
+
+    }
+
     /**
-     *Este método faz as interações com o usuário, de modo que quando este escolhe a opção é chamado outro método para realizar a ação
+     * Este método faz as interações com o usuário, de modo que quando este
+     * escolhe a opção é chamado outro método para realizar a ação
      */
     public static void menu() {
         System.out.println(" \n");
@@ -38,7 +53,6 @@ public class MenuChacara {
         //System.out.println("4) Excluir");
         System.out.println("0) VOLTAR ");
         System.out.println(" ");
-    
 
     }
 
@@ -52,28 +66,10 @@ public class MenuChacara {
         System.out.print("OPÇÃO:     ");
 
     }
-    
-    
-    
-    
-   public void carregarArquivos() {
-        TipoDeImovel tipo;
-        tipo = TipoDeImovel.CHACARA;
-        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
-        lista = new ListaDeImoveis(caminho, tipo);
-        
-       
-      if (lista.lerArquivo() == true) {
-            System.out.println("Arquivos carregados");
-        } else {
-            System.out.println("Arquivo não iniciados");
-        }
-
-    }
-
 
     /**
-     *Esse método recebe informações do usuário e passa para o construtor (parâmetros)
+     * Esse método recebe informações do usuário e passa para o construtor
+     * (parâmetros)
      */
     public void IncluirImovel() {
 
@@ -89,36 +85,35 @@ public class MenuChacara {
         int anoConstrucao;
         double distCidade;
 
-      
         logradouro = inString("Digite o Logradouro:  ");
-        
+
         numero = inInt("Digite o numero: ");
-        
+
         bairro = inString("Digite o Bairro:  ");
-        
+
         cidade = inString("Digite a Cidade:  ");
-        
+
         descricao = inString("Digite Uma Descrição:  ");
-        
+
         areaTotal = inDouble("Digite a Área Total:  ");
-        
+
         valor = inDouble("Digite o Valor do Imóvel:  ");
-        
+
         areaConstruida = inDouble("Digite a Área Construída:");
-        
+
         numeroQuartos = inInt("Digite o Número de Quartos:  ");
-        
-        anoConstrucao =inInt("Digite o Ano da Construção: ");
-      
+
+        anoConstrucao = inInt("Digite o Ano da Construção: ");
+
         distCidade = inDouble("Digite a Distância da Cidade:  ");
-      
-        Imovel chacara = new Chacara(distCidade, logradouro, numero, bairro, cidade, 
-            descricao, areaTotal, valor, areaConstruida, numeroQuartos, anoConstrucao);
+
+        Imovel chacara = new Chacara(distCidade, logradouro, numero, bairro, cidade,
+                descricao, areaTotal, valor, areaConstruida, numeroQuartos, anoConstrucao);
 
         boolean objeto = lista.incluir(chacara);
-        
+
         System.out.println("\n");
-        
+
         if (objeto == true) {
             System.out.println("Imóvel incluido com sucesso!");
         } else {
@@ -129,7 +124,6 @@ public class MenuChacara {
         } catch (Exception ex) {
             Logger.getLogger(MenuChacara.class.getName()).log(Level.SEVERE, null, ex);
         }
-                
 
     }
 
@@ -137,6 +131,8 @@ public class MenuChacara {
      * Consulta pela entrada do usuário (inteiro - código)
      */
     public void Consultar() {
+        
+        lista.mostrarLista();
         System.out.println("\n");
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
@@ -153,14 +149,13 @@ public class MenuChacara {
         }
 
     }
-    
+
     public void menuInicial() {
         int i;
-       
+
         do {
             MenuChacara.menu();
             i = inInt("Opção: ");
-
 
             switch (i) {
                 case 1:
@@ -208,27 +203,25 @@ public class MenuChacara {
         } while (i != 0);
 
     }
-    
-    
-     public void editarControle() {
-        
+
+    public void editarControle() {
+
         System.out.println("\n");
         System.out.println("***********  MENU EDITAR ************ ");
         System.out.println("\n ");
         System.out.println("DIGITE O CODIGO DO IMOVÉL QUE DESEJA EDITAR:");
         int codigoConsulta = entrada.nextInt();
-        
+
         entrada.nextLine();
-        
+
         Imovel editarLista = lista.consultar(codigoConsulta);
         entrada.nextLine();
 
-        
         int k = 1;
 
         if (editarLista != null) {
-            
-            while (k != 0){
+
+            while (k != 0) {
                 System.out.println(" \n");
                 System.out.println("QUAL INFORMAÇÂO DESEJA EDITAR: ");
                 System.out.println(" \n");
@@ -293,57 +286,53 @@ public class MenuChacara {
                         System.out.print("\n");
                         System.out.print("DIGITE A ARÉA TOTAL:");
                         editarLista.setAreaTotal(entrada.nextDouble());
-                        
 
                         break;
-                     
-                    case 7: 
+
+                    case 7:
                         System.out.print("\n");
                         System.out.print("DIGITE O VALOR:");
                         editarLista.setValor(entrada.nextDouble());
-                        
+
                         break;
-                        
-                    case 8: 
+
+                    case 8:
                         System.out.print("\n");
                         System.out.print("DIGITE A ÁREA CONSTRUÍDA:");
                         editarLista.setAreaConstruida(entrada.nextDouble());
                         entrada.nextLine();
-                        
+
                         break;
-                        
+
                     case 9:
-                        
+
                         System.out.print("\n");
                         System.out.print("DIGITE O NÚMERO DE QUARTOS:");
                         editarLista.setNumeroQuartos(entrada.nextInt());
-                 
-                        
+
                         break;
-                        
-                        
+
                     case 10:
-                        
+
                         System.out.print("\n");
                         System.out.print("DIGITE O ANO DA CONSTRUÇÃO:");
                         editarLista.setAnoConstrucao(entrada.nextInt());
                         entrada.nextLine();
                         break;
-                        
-                        
+
                     case 11:
-                        
+
                         System.out.print("\n");
                         System.out.print("DIGITE A DISTÂNCIA DA CIDADE:");
                         editarLista.setDistCidade(entrada.nextDouble());
                         entrada.nextLine();
-                        
-                        break;                
-                    
+
+                        break;
+
                 }
 
             }
-            
+
             lista.editar(codigoConsulta, editarLista);
             System.out.println(" --- ");
             try {
@@ -357,7 +346,5 @@ public class MenuChacara {
         }
 
     }
-     
-     
 
 }

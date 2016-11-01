@@ -31,6 +31,20 @@ public class MenuApartamento {
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
     
+    public MenuApartamento() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.APARTAMENTO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
+        }
+
+    }
+    
 
     /**
      * Método chamado menu, que exibe as opções Novo Imóvel e Consultar
@@ -93,26 +107,14 @@ public class MenuApartamento {
 
     public static void menu2() {
         System.out.println("=================================================");
-        System.out.println("===============Selecione uma opção===============");
+        System.out.println("===============SELECIONE UMA OPÇÃO===============");
         System.out.println("  1)Bairro  ");
         System.out.println("  2)Valor");
         System.out.println("");
 
     }
 
-    public void carregarArquivos() {
-        TipoDeImovel tipo;
-        tipo = TipoDeImovel.APARTAMENTO;
-        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
-        lista = new ListaDeImoveis(caminho, tipo);
-        
-        if (lista.lerArquivo() == true) {
-            System.out.println("Arquivos carregados");
-        } else {
-            System.out.println("Arquivo não iniciados");
-        }
-
-    }
+    
 
     /**
      * Método de Incluir um novo Imóvel
@@ -190,6 +192,8 @@ public class MenuApartamento {
      */
     public void Consultar() {
 
+        
+        lista.mostrarLista();
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
