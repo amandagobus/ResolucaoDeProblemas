@@ -45,6 +45,7 @@ public class MenuApartamento {
             System.out.println("4) Excluir");
             System.out.println("5) Ordenar");
             System.out.println("6) Pesquisar");
+            System.out.println("7)Exibir tudo");
             System.out.println("0) Sair ");
             System.out.println(" ");
 
@@ -71,18 +72,18 @@ public class MenuApartamento {
                 case 6:
                     MenuApartamento.menu2();
                     opcao = inInt("Opção: ");
-                    switch(opcao){
+                    switch (opcao) {
                         case 1:
                             String s = inString("Informe o Bairro: ");
                             List imovel = lista.pesquisaBairro(s);
                             System.out.println(imovel.toString());
                             break;
                         case 2:
-                            double d =inDouble("Informe o Valor: ");
+                            double d = inDouble("Informe o Valor: ");
                             List imo = lista.pesquisaValor(d);
                             System.out.println(imo.toString());
                             break;
-                            
+
                     }
                     break;
             }
@@ -96,7 +97,7 @@ public class MenuApartamento {
         System.out.println("  1)Bairro  ");
         System.out.println("  2)Valor");
         System.out.println("");
-        
+
     }
 
     public void Carregar() {
@@ -213,6 +214,8 @@ public class MenuApartamento {
         div();
         return inInt("Digite o código do imóvel: ");
     }
+
+   
 
     /**
      * Método de ordenar
@@ -361,4 +364,5 @@ public class MenuApartamento {
         lista.excluir(codigo);
 
     }
+   
 }
