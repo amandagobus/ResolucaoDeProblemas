@@ -12,7 +12,6 @@ import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.TipoDeImovel;
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;

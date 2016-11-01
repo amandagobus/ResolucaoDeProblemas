@@ -13,7 +13,6 @@ import static Imovel.EntradasTeclado.inString;
 import Imovel.Imovel;
 import Imovel.TipoDeImovel;
 import ListaImoveis.ListaDeImoveis;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -345,7 +344,7 @@ public class MenuApartamento {
                     break;
 
             }
-            ;
+            
             lista.editar(codigo, apartamento);
             try {
                 lista.escreverArquivo();
