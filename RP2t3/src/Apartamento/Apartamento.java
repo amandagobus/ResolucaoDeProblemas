@@ -39,7 +39,18 @@ public class Apartamento extends Predio {
         this.numeroQuartos = numeroQuartos;
         this.numeroVagas = numeroVagas;
     }
+    
+    
+    
+    public Apartamento(int codigo, String logradouro, int numero, String bairro, String cidade, String descricao, double areaTotal, double valor, String nomeEdificio, int andar,
+            double valorCondominio, int numeroDoApartamento, int anoDeConstrucao, int numeroVagas, int numeroQuartos) {
+        super(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal, valor, nomeEdificio, andar, valorCondominio);
 
+        this.numeroDoApartamento = numeroDoApartamento;
+        this.anoDeConstrucao = anoDeConstrucao;
+        this.numeroQuartos = numeroQuartos;
+        this.numeroVagas = numeroVagas;
+    }
   
 
     /**
@@ -118,6 +129,13 @@ public class Apartamento extends Predio {
         dados += "Ano Da Construção: " + anoDeConstrucao + "\n";
         dados += "Numero De Vagas: " + numeroVagas + "\n";
 
+        return dados;
+    }
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile();
+        dados += numeroQuartos+ "," + numeroDoApartamento + "," + anoDeConstrucao + "," + numeroVagas;
         return dados;
     }
 

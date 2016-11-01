@@ -28,7 +28,7 @@ public class MenuTerreno {
     
     
     Terreno terreno;
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
@@ -149,7 +149,10 @@ public class MenuTerreno {
 
         if ((Imo != null) && (Imo instanceof Terreno)) {
             System.out.println("=======================================");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
             System.out.println(Imo.toString());
+            System.out.println("=======================================");
+
 
         } else if (Imo == null) {
             System.out.println("Imóvel Não Cadastrado;");
@@ -286,11 +289,13 @@ public class MenuTerreno {
 
     }
 
-    public void Carregar(){
-    TipoDeImovel tipo = TipoDeImovel.TERRENO;
-        String caminho = lista.Converte(tipo);
+    public void carregarArquivos(){TipoDeImovel tipo;
+        tipo = TipoDeImovel.TERRENO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
         lista.setCaminho(caminho);
-        lista.lerArquivo();
+      
         if(lista.lerArquivo()==true){
             System.out.println("Arquivos Carregados ");
         }else {

@@ -11,6 +11,7 @@ import Chacara.Chacara;
 import static Imovel.EntradasTeclado.inDouble;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
+import Imovel.TipoDeImovel;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class MenuChacara {
 
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     Scanner entrada = new Scanner(System.in);
 
     /**
@@ -55,18 +56,21 @@ public class MenuChacara {
     
     
     
-    public void Carregar() {
-     
+   public void carregarArquivos() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.CHACARA;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
         
-        try {
-            lista.lerChacara();
-        } catch (IOException ex) {
-            Logger.getLogger(MenuChacara.class.getName()).log(Level.SEVERE, null, ex);
+       
+      if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
         }
-        
-        
 
     }
+
 
     /**
      *Esse método recebe informações do usuário e passa para o construtor (parâmetros)
@@ -121,7 +125,7 @@ public class MenuChacara {
             System.out.println("Imóvel não foi incluido!");
         }
         try {
-            lista.gravarChacara();
+            lista.escreverArquivo();
         } catch (Exception ex) {
             Logger.getLogger(MenuChacara.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -139,7 +143,10 @@ public class MenuChacara {
         entrada.nextLine();
 
         if ((Imo != null) && (Imo instanceof Chacara)) {
+            System.out.println("=======================================");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
             System.out.println(Imo.toString());
+            System.out.println("=======================================");
 
         } else if (Imo == null) {
             System.out.println("Imóvel Não Cadastrado;");
@@ -340,7 +347,7 @@ public class MenuChacara {
             lista.editar(codigoConsulta, editarLista);
             System.out.println(" --- ");
             try {
-                lista.gravarChacara();
+                lista.escreverArquivo();
             } catch (Exception ex) {
                 Logger.getLogger(Chacara.class.getName()).log(Level.SEVERE, null, ex);
             }

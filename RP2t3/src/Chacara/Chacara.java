@@ -39,4 +39,11 @@ public class Chacara extends Residencia {
 
         return dados;
     }
+    
+    @Override
+    public String toFile() {
+        String dados = super.toFile();
+        dados += distCidade;
+        return dados;
+    }
 }

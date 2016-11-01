@@ -26,10 +26,11 @@ import java.util.logging.Logger;
 public class MenuApartamento {
 
     Apartamento apartamento;
-    ListaDeImoveis lista = new ListaDeImoveis();
+    ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
+    
 
     /**
      * Método chamado menu, que exibe as opções Novo Imóvel e Consultar
@@ -45,7 +46,6 @@ public class MenuApartamento {
             System.out.println("4) Excluir");
             System.out.println("5) Ordenar");
             System.out.println("6) Pesquisar");
-            System.out.println("7)Exibir tudo");
             System.out.println("0) Sair ");
             System.out.println(" ");
 
@@ -100,11 +100,12 @@ public class MenuApartamento {
 
     }
 
-    public void Carregar() {
-        TipoDeImovel tipo = TipoDeImovel.APARTAMENTO;
-        String caminho = lista.Converte(tipo);
-        lista.setCaminho(caminho);
-        lista.lerArquivo();
+    public void carregarArquivos() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.APARTAMENTO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
         if (lista.lerArquivo() == true) {
             System.out.println("Arquivos carregados");
         } else {
@@ -172,7 +173,7 @@ public class MenuApartamento {
 
         boolean objeto = lista.incluir(apartamento);
         try {
-            lista.gravarApartamento();
+            lista.escreverArquivo();
         } catch (Exception ex) {
             Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
         }

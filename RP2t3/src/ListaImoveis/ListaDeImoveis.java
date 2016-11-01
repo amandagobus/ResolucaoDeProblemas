@@ -6,16 +6,21 @@
 package ListaImoveis;
 
 import Apartamento.Apartamento;
+import Casa.Casa;
 import Chacara.Chacara;
 import Imovel.Imovel;
 import SalaComercial.SalaComercial;
 import java.util.ArrayList;
 import java.util.List;
 import Imovel.ListaImoveis;
+import Imovel.Tipo;
+import static Imovel.Tipo.RESIDENCIAL;
 import Imovel.TipoDeImovel;
 import Menu.MenuApartamento;
 import Menu.MenuCasa;
 import Menu.MenuSalaComercial;
+import Menu.MenuTerreno;
+import Terreno.Terreno;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -34,10 +39,16 @@ import java.util.logging.Logger;
  */
 public class ListaDeImoveis implements ListaImoveis {
 
-    List<Imovel> lista = new ArrayList<>();
+    List<Imovel> lista;
     private TipoDeImovel tipo;
     private String caminho;
 
+
+public ListaDeImoveis(String caminho, TipoDeImovel tipo){
+           lista = new ArrayList<>();
+    this.caminho = caminho;
+    this.tipo = tipo;
+}
     /**
      * @return the caminho
      */
@@ -50,12 +61,6 @@ public class ListaDeImoveis implements ListaImoveis {
      */
     public void setCaminho(String caminho) {
         this.caminho = caminho;
-    }
-
-    public String Converte(TipoDeImovel tipo) {
-        this.tipo = tipo;
-        this.caminho = "";
-        return System.getProperty("user.dir") + System.getProperty("file.separator") + this.tipo + ".csv";
     }
 
     public TipoDeImovel getTipo() {
@@ -132,6 +137,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     /**
      * Metodo que ordena a lista por valor.
+     *
      * @return lista, lista ordenada por valor
      */
     @Override
@@ -214,10 +220,7 @@ public class ListaDeImoveis implements ListaImoveis {
         try {
             FileWriter outFile = new FileWriter(new File(caminho));
             BufferedWriter escrever = new BufferedWriter(outFile);
-            /*Imovel mo = lista.get(0);
-            escrever.write(mo.toFileTitulo());
-            escrever.write("\r\n");
-             */
+
             for (Imovel imovel : lista) {
                 escrever.write(imovel.toFile());
                 escrever.write("\r\n");
@@ -226,7 +229,7 @@ public class ListaDeImoveis implements ListaImoveis {
             outFile.close();
             return true;
         } catch (IOException ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return false;
@@ -235,21 +238,33 @@ public class ListaDeImoveis implements ListaImoveis {
     @Override
     public boolean lerArquivo() {
         if (tipo.getValor() == 1) {
-            //chamar metodo de ler apartamamento
+            try {
+                lerApartamento();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         }
         if (tipo.getValor() == 2) {
-            //Chama metodo de ler casa
+            try {
+                lerCasa();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         }
         if (tipo.getValor() == 3) {
-            //Chama metodo de ler Chacara
+            try {
+                lerChacara();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
             return true;
         }
         if (tipo.getValor() == 4) {
 
             try {
-                lerSala();
+                lerSalaComercial();
             } catch (IOException ex) {
                 Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -257,7 +272,11 @@ public class ListaDeImoveis implements ListaImoveis {
             return true;
         }
         if (tipo.getValor() == 5) {
-            //Chama metodo de Ler terreno
+            try {
+                lerTerreno();
+            } catch (IOException ex) {
+                Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             return true;
         }
@@ -265,7 +284,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-    public boolean lerSala() throws FileNotFoundException, IOException {
+    public boolean lerSalaComercial() throws FileNotFoundException, IOException {
 
         File file = new File(caminho);
 
@@ -279,7 +298,6 @@ public class ListaDeImoveis implements ListaImoveis {
             arquivo = new FileInputStream(new File(getCaminho()));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-           
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -296,7 +314,7 @@ public class ListaDeImoveis implements ListaImoveis {
                 numeroSala = Integer.parseInt(parte[11]);
                 NumeroBanheiro = Integer.parseInt(parte[12]);
 
-                sala = new SalaComercial(codigo,logradouro, numero, bairro, cidade,
+                sala = new SalaComercial(codigo, logradouro, numero, bairro, cidade,
                         descricao, areaTotal, valor, nomeEdificio, andar,
                         valorCondominio, NumeroBanheiro, numeroSala);
                 incluir(sala);
@@ -310,7 +328,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
-    public void gravarChacara() throws Exception {
+    /*public void gravarChacara() throws Exception {
 
         //verificar se o arquivo existe, se não existeir criar (o ato de recriar o mesmo arquivo ja resolve por se só?)
         FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Chacara.csv"));
@@ -331,11 +349,10 @@ public class ListaDeImoveis implements ListaImoveis {
         escrever.close();
         outFile.close();
 
-    }
-
+    }*/
     public boolean lerChacara() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Chacara.csv");
+        File file = new File(caminho);
 
         if (file.exists()) {
             FileInputStream arquivo;
@@ -344,10 +361,9 @@ public class ListaDeImoveis implements ListaImoveis {
             int codigo, numero, andar, numeroQuartos, anoConstrucao;
             double areaTotal, valor, areaConstruida, distCidade;
             Imovel chacara;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Chacara.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -379,7 +395,7 @@ public class ListaDeImoveis implements ListaImoveis {
 
     public boolean lerApartamento() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Apartamento.csv");
+        File file = new File(caminho);
 
         if (file.exists()) {
             FileInputStream arquivo;
@@ -393,10 +409,9 @@ public class ListaDeImoveis implements ListaImoveis {
             int numeroDoApartamento;
 
             Imovel sala;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Sala.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
-
-            linha = ler.readLine();
+            // linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -417,9 +432,10 @@ public class ListaDeImoveis implements ListaImoveis {
                 anoDeConstrucao = Integer.parseInt(parte[13]);
                 numeroDoApartamento = Integer.parseInt(parte[14]);
 
-                Apartamento ap = new Apartamento(logradouro, numero, bairro, cidade,
-                        descricao, areaTotal, valor, nomeEdificio, andar,
-                        valorCondominio, numeroQuartos, numeroVagas, anoDeConstrucao, numeroDoApartamento);
+                Apartamento ap = new Apartamento(codigo,logradouro, numero, bairro,
+                        cidade, descricao, areaTotal, valor, nomeEdificio, andar,
+                        valorCondominio, numeroQuartos, numeroVagas,
+                        anoDeConstrucao, numeroDoApartamento);
                 incluir(ap);
 
             }
@@ -431,6 +447,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
+    /*
     public boolean gravarApartamento() {
 
         try {
@@ -454,6 +471,7 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
+    
     public boolean gravarCasa() {
 
         try {
@@ -476,19 +494,19 @@ public class ListaDeImoveis implements ListaImoveis {
         }
         return false;
     }
-
+     */
     public boolean lerCasa() throws FileNotFoundException, IOException {
 
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Casa.csv");
+        File file = new File(caminho);
 
         if (file.exists()) {
             FileInputStream arquivo;
             BufferedReader ler;
-            String linha, logradouro, bairro, cidade, descricao;
+            String linha, logradouro, bairro, cidade, descricao, pegarTipo;
             int codigo, numero;
             double areaTotal, valor;
 
-            int tipo;
+            Tipo tipo;
             double areaConstruida;
             int numeroQuartos;
             int anoConstrucao;
@@ -496,10 +514,9 @@ public class ListaDeImoveis implements ListaImoveis {
             int numeroDeVagas;
 
             Imovel sala;
-            arquivo = new FileInputStream(new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "Casa.csv"));
+            arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
-            linha = ler.readLine();
             while ((linha = ler.readLine()) != null) {
                 String parte[] = linha.split(",");
                 codigo = Integer.parseInt(parte[0]);
@@ -514,11 +531,20 @@ public class ListaDeImoveis implements ListaImoveis {
                 numeroQuartos = Integer.parseInt(parte[9]);
                 anoConstrucao = Integer.parseInt(parte[10]);
                 numeroDeVagas = Integer.parseInt(parte[11]);
-                tipo = parseInt(parte[12]);
+                pegarTipo = parte[12];
 
-                Apartamento ap = new Apartamento(logradouro, numero, bairro, cidade, descricao, areaTotal, valor, descricao, tipo, valor, numeroDeVagas, anoConstrucao, numeroDeVagas, numeroQuartos);
-                incluir(ap);
+                if (pegarTipo.equalsIgnoreCase("residencial")) {
+                    tipo = Tipo.RESIDENCIAL;
+                } else {
 
+                    tipo = Tipo.COMERCIAL;
+
+                }
+
+                Casa c = new Casa(codigo, logradouro, numero, bairro, cidade,
+                        descricao, numero, valor, areaConstruida, numeroQuartos,
+                        anoConstrucao, tipo, numeroDeVagas);
+                incluir(c);
             }
             ler.close();
             arquivo.close();
@@ -528,4 +554,72 @@ public class ListaDeImoveis implements ListaImoveis {
         return false;
     }
 
+    /*
+    *Método que cria um arquivo e grava o imovel terreno
+     */
+ /*
+    public boolean gravarTerreno() {
+
+        try {
+            FileWriter outFile = new FileWriter(new File(System.getProperty("user.dir") 
+                    + System.getProperty("file.separator") + "Terreno.csv"));
+            BufferedWriter escrever = new BufferedWriter(outFile);
+            Imovel mo = lista.get(0);
+            escrever.write(mo.toFileTitulo());
+            escrever.write("\r\n");
+
+            for (Imovel imovel : lista) {
+                escrever.write(imovel.toFile());
+                escrever.write("\r\n");
+            }
+            escrever.close();
+            outFile.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(MenuTerreno.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return false;
+    }
+     */
+
+    public boolean lerTerreno() throws FileNotFoundException, IOException {
+
+        File file = new File(caminho);
+
+        if (file.exists()) {
+            FileInputStream arquivo;
+            BufferedReader ler;
+            String linha, logradouro, bairro, cidade, descricao;
+            int codigo, numero;
+            double areaTotal, valor, dimensaoFrente, dimensaoLado;
+
+            Imovel terreno;
+            arquivo = new FileInputStream(new File(caminho));
+            ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
+
+            while ((linha = ler.readLine()) != null) {
+                String parte[] = linha.split(",");
+                codigo = Integer.parseInt(parte[0]);
+                logradouro = parte[1];
+                numero = Integer.parseInt(parte[2]);
+                bairro = parte[3];
+                cidade = parte[4];
+                descricao = parte[5];
+                areaTotal = Double.parseDouble(parte[6]);
+                valor = Double.parseDouble(parte[7]);
+                dimensaoFrente = Double.parseDouble(parte[8]);
+                dimensaoLado = Double.parseDouble(parte[9]);
+
+                terreno = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal,
+                        valor, dimensaoFrente, dimensaoLado);
+                incluir(terreno);
+
+            }
+            ler.close();
+            arquivo.close();
+            return true;
+        }
+        return false;
+    }
 }
