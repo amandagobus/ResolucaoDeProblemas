@@ -6,7 +6,6 @@
 package Terreno;
 
 import Imovel.Imovel;
-import Imovel.TipoDeImovel;
 
 /**
  * Classe para objetos do tipo Terreno, onde serÃ£o contidos valores e mÃ©todos para o mesmo.

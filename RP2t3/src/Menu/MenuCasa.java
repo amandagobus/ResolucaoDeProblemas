@@ -31,6 +31,22 @@ public class MenuCasa {
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
+    
+    public MenuCasa() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.CASA;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
+             
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos carregados");
+        } else {
+            System.out.println("Arquivo não iniciados");
+        }
+
+    }
+
 
     /**
      * Método chamado menu, que exibe as opções Novo Imóvel e Consultar
@@ -100,21 +116,7 @@ public class MenuCasa {
 
     }
 
-    public void carregarArquivos() {
-        TipoDeImovel tipo;
-        tipo = TipoDeImovel.CASA;
-        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
-        lista = new ListaDeImoveis(caminho, tipo);
-        
-             
-        if (lista.lerArquivo() == true) {
-            System.out.println("Arquivos carregados");
-        } else {
-            System.out.println("Arquivo não iniciados");
-        }
-
-    }
-
+    
     /**
      * Método de Incluir um novo Imóvel
      */
@@ -231,6 +233,8 @@ public class MenuCasa {
      * Método de consultar por código
      */
     public void Consultar() {
+        
+        lista.mostrarLista();
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();

@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,18 +9,14 @@ package ListaImoveis;
 import Apartamento.Apartamento;
 import Casa.Casa;
 import Chacara.Chacara;
+import static Imovel.EntradasTeclado.div;
 import Imovel.Imovel;
 import SalaComercial.SalaComercial;
 import java.util.ArrayList;
 import java.util.List;
 import Imovel.ListaImoveis;
 import Imovel.Tipo;
-import static Imovel.Tipo.RESIDENCIAL;
 import Imovel.TipoDeImovel;
-import Menu.MenuApartamento;
-import Menu.MenuCasa;
-import Menu.MenuSalaComercial;
-import Menu.MenuTerreno;
 import Terreno.Terreno;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,7 +26,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,13 +35,13 @@ import java.util.logging.Logger;
  */
 public class ListaDeImoveis implements ListaImoveis {
 
-    List<Imovel> lista;
+    private List<Imovel> lista;
     private TipoDeImovel tipo;
     private String caminho;
 
 
 public ListaDeImoveis(String caminho, TipoDeImovel tipo){
-           lista = new ArrayList<>();
+    lista = new ArrayList<>();
     this.caminho = caminho;
     this.tipo = tipo;
 }
@@ -157,6 +153,19 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return aux;
     }
+    
+    public void mostrarLista() {
+        
+        div();
+        for (Imovel imovel : lista) {
+            System.out.println("CODIGO:   "+ imovel.getCodigo()+ "    " 
+                    + " LOGRADOURO:   " + imovel.getLogradouro()+"    "
+                    + " VALOR:   " + imovel.getValor());
+        }
+        div();
+       
+    }
+
 
     @Override
     public List<Imovel> ordenarArea() {
@@ -181,7 +190,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
     /**
      * Metodo que pesquisa um Imovel pelo valor
      *
-     * @param bairro, informado pelo usuario
+     * @param valor, informado pelo usuario
      * @return uma lista de Imóvel, cujo valor seja menor ou igual ao valor
      * informado
      */
@@ -594,7 +603,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
             int codigo, numero;
             double areaTotal, valor, dimensaoFrente, dimensaoLado;
 
-            Imovel terreno;
+            Imovel t;
             arquivo = new FileInputStream(new File(caminho));
             ler = new BufferedReader(new InputStreamReader(arquivo, "UTF-8"));
 
@@ -611,9 +620,9 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
                 dimensaoFrente = Double.parseDouble(parte[8]);
                 dimensaoLado = Double.parseDouble(parte[9]);
 
-                terreno = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal,
+                t = new Terreno(codigo, logradouro, numero, bairro, cidade, descricao, areaTotal,
                         valor, dimensaoFrente, dimensaoLado);
-                incluir(terreno);
+                incluir(t);
 
             }
             ler.close();

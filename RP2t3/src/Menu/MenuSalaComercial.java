@@ -5,9 +5,11 @@
  */
 package Menu;
 
+import static Imovel.EntradasTeclado.div;
 import Imovel.Imovel;
 import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inDouble;
+import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.TipoDeImovel;
 import ListaImoveis.ListaDeImoveis;
@@ -26,6 +28,23 @@ public class MenuSalaComercial {
 
     ListaDeImoveis lista;
     Scanner entrada = new Scanner(System.in);
+    
+    /**
+ * Metodo que chama o metodo que carrega arquivos dentro da lista de Imoveis
+ */
+    public MenuSalaComercial(){
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.SALACOMERCIAL;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+        
+        if(lista.lerArquivo()==true){
+            System.out.println("Arquivos carregados");
+        }else {
+            System.out.println("Arquivo não iniciados");
+        }
+    
+    }
 
     public static void menu() {
         System.out.println(" \n");
@@ -43,9 +62,8 @@ public class MenuSalaComercial {
     }
 
     public static void menu2() {
-        System.out.println(" \n");
-        System.out.println("*************** MENU DE CONSULTA *****************");
-        System.out.println(" \n");
+        System.out.println("=================================================");
+        System.out.println("===============SELECIONE UMA OPÇÃO===============");
         System.out.println("1) CÓDIGO  ");
         System.out.println("0) VOLTAR ");
         System.out.println("\n ");
@@ -124,6 +142,7 @@ public class MenuSalaComercial {
             Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
 
     /**
      * Metodo que recebe uma informação do usuario, e consulta se o objeto esta
@@ -131,13 +150,16 @@ public class MenuSalaComercial {
      */
     public void Consultar() {
         
-        System.out.println("DIGITE O CODIGO DO IMOVÉL: ");
+        System.out.println("===============IMÓVIES DISPONIVIES================");
+        lista.mostrarLista();
+        System.out.println("\n");
+        System.out.print("DIGITE O CODIGO DO IMOVÉL: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
 
         if ((Imo != null) && (Imo instanceof SalaComercial)) {
             System.out.println("=======================================");
-            System.out.println("*******INFORMAÇÕES DO IMÓVEL *****\n");
+            System.out.println("*******INFORMAÇÕES DO IMÓVEL *******\n");
             System.out.println(Imo.toString());
             System.out.println("=======================================");
 
@@ -146,7 +168,8 @@ public class MenuSalaComercial {
         }
 
     }
-
+    
+    
 
     public void excluirControle() {
         System.out.println(" DIGITE O CODIGO DO IMÓVEL: ");
@@ -317,22 +340,7 @@ public class MenuSalaComercial {
         }
 
     }
-/**
- * Metodo que chama o metodo que carrega arquivos dentro da lista de Imoveis
- */
-    public void carregarArquivos(){
-        TipoDeImovel tipo;
-        tipo = TipoDeImovel.SALACOMERCIAL;
-        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
-        lista = new ListaDeImoveis(caminho, tipo);
-        
-        if(lista.lerArquivo()==true){
-            System.out.println("Arquivos carregados");
-        }else {
-            System.out.println("Arquivo não iniciados");
-        }
-    
-    }
+
     
     public void menuInicial() {
         int i;
@@ -357,9 +365,7 @@ public class MenuSalaComercial {
 
                     switch (opcao) {
                         case 1:
-                            System.out.println("\n");
-                            System.out.println("******** CONSULTAR IMÓVEL POR CÓDIGO ********");
-                            System.out.println("\n\n");
+                            
                             Consultar();
                             break;
 

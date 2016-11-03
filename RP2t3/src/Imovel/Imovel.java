@@ -24,7 +24,7 @@ public abstract class Imovel {
     public Imovel(int codigo, String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor) {
         this.codigo = codigo;
-        this.codigoGeral = codigo + 1;
+        this.codigoGeral = 1 + codigo;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
@@ -38,7 +38,6 @@ public abstract class Imovel {
     /**
      * Construtor da Super Classe Imovéis
      *
-     * @param codigo
      * @param logradouro
      * @param numero
      * @param bairro

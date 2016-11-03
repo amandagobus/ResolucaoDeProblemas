@@ -33,7 +33,8 @@ public abstract interface ListaImoveis {
     /**
      * Edita o imÃ³vel com o cÃ³digo informado.
      *
-     * @param cÃ³digo CÃ³digo do imÃ³vel a ser editado.
+     * @param codigo, codigo do imóvel que será editado
+     * @param  CÃ³digo do imÃ³vel a ser editado.
      * @param im ImÃ³vel com as novas informaÃ§Ãµes.
      * @return True se o imÃ³vel com o cÃ³digo informado for editado e False
      * caso nenhum imÃ³vel com o cÃ³digo infornado for encontrado.

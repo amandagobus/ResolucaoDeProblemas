@@ -57,6 +57,7 @@ public class Apartamento extends Predio {
      *
      * @return NumeroQuartos
      */
+    @Override
     public int getNumeroQuartos() {
         return numeroQuartos;
     }
@@ -65,6 +66,7 @@ public class Apartamento extends Predio {
      *
      * @param numeroQuartos
      */
+    @Override
     public void setNumeroQuartos(int numeroQuartos) {
         this.numeroQuartos = numeroQuartos;
     }

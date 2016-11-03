@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -30,11 +29,11 @@ public class RP2T3 {
         MenuChacara chacara = new MenuChacara();
         int op = 1;
         Scanner entrada = new Scanner(System.in);
-        Ap.carregarArquivos();
-        casa.carregarArquivos();
-        chacara.carregarArquivos();
-        salaC.carregarArquivos();
-        terreno.carregarArquivos();
+        //Ap.carregarArquivos();
+       // casa.carregarArquivos();
+        //chacara.carregarArquivos();
+        //salaC.carregarArquivos();
+        //terreno.carregarArquivos();
         while (op != 0) {
             System.out.println(" ");
             System.out.println("******** BEM VINDO AO MENU ********");

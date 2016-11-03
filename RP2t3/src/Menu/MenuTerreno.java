@@ -12,7 +12,6 @@ import static Imovel.EntradasTeclado.inString;
 import Imovel.TipoDeImovel;
 import ListaImoveis.ListaDeImoveis;
 import Terreno.Terreno;
-import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -25,29 +24,41 @@ import java.util.logging.Logger;
  * @author Julielen
  */
 public class MenuTerreno {
-    
-    
+
     Terreno terreno;
     ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
     private int codigoImovel;
     Scanner entrada = new Scanner(System.in);
-    
+
+    public MenuTerreno() {
+        TipoDeImovel tipo;
+        tipo = TipoDeImovel.TERRENO;
+        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
+        lista = new ListaDeImoveis(caminho, tipo);
+
+        if (lista.lerArquivo() == true) {
+            System.out.println("Arquivos Carregados ");
+        } else {
+            System.out.println("Arquivo não Iniciados ");
+        }
+
+    }
 
     /**
-     * Metodo chamado menu, que exibe as opçoes novo imovel, consultar,
-     * editar, excluir, pesquisar, ordenar um imovel e voltar ao menu anterior.
+     * Metodo chamado menu, que exibe as opçoes novo imovel, consultar, editar,
+     * excluir, pesquisar, ordenar um imovel e voltar ao menu anterior.
      */
     public static void menu() {
         System.out.println(" \n");
         System.out.println("***** Menu *****\n");
-        System.out.println("[1] Novo Imóvel Terreno ");
-        System.out.println("[2] Consultar ");
-        System.out.println("[3] Editar ");
-        System.out.println("[4] Excluir ");
-        System.out.println("[5] Pesquisar ");
-        System.out.println("[6] Ordenar ");
-        System.out.println("[0] Voltar ");
+        System.out.println("1) Novo Imóvel Terreno ");
+        System.out.println("2) Consultar ");
+        System.out.println("3) Editar ");
+        System.out.println("4) Excluir ");
+        System.out.println("5) Pesquisar ");
+        System.out.println("6) Ordenar ");
+        System.out.println("7) Voltar ");
         System.out.println(" ");
         System.out.print("Opção: ");
     }
@@ -56,39 +67,36 @@ public class MenuTerreno {
         System.out.println(" \n");
         System.out.println("*************** MENU DE CONSULTA *****************");
         System.out.println(" \n");
-        System.out.println("[1] Código ");
-        System.out.println("[0] Voltar ");
+        System.out.println("1) Código ");
+        System.out.println("2) Voltar ");
         System.out.println("\n ");
         System.out.print("Opção: ");
 
     }
-    
-     public static void menu3() {
-        System.out.println("*************** MENU DE PESQUISA *****************");
-        System.out.println(" \n");
-        System.out.println("[1] Bairro ");
-        System.out.println("[2] Valor ");
-        System.out.println("[0] Voltar ");
+
+    public static void menu3() {
+        System.out.println("=================================================");
+        System.out.println("===============SELECIONE UMA OPÇÃO===============");
+        System.out.println("1) Bairro ");
+        System.out.println("2) Valor ");
+        System.out.println("0) Voltar ");
         System.out.println("\n ");
         System.out.print("Opção: ");
-
-
     }
+
     public static void menu4() {
         System.out.println("*************** MENU DE ORDENAÇÃO ****************");
         System.out.println(" \n");
-        System.out.println("[1] Área ");
-        System.out.println("[2] Código ");
-        System.out.println("[3] Valor ");
-        System.out.println("[0] Voltar ");
+        System.out.println("1) Área ");
+        System.out.println("2) Código ");
+        System.out.println("3) Valor ");
+        System.out.println("4) Voltar ");
         System.out.println("\n ");
         System.out.print("Opção: ");
     }
-    
 
     /**
-     * Metodo que faz a interação com o usuário,
-     * incluindo um novo imovel.
+     * Metodo que faz a interação com o usuário, incluindo um novo imovel.
      */
     public void IncluirImovel() {
 
@@ -104,13 +112,13 @@ public class MenuTerreno {
 
         logradouro = inString("Digite o Logradouro:  ");
 
-        numero = inInt("Digite o numero: ");
+        numero = inInt("Digite o Número: ");
 
         bairro = inString("Digite o Bairro:  ");
 
         cidade = inString("Digite a Cidade:  ");
 
-        descricao = inString("Digite Uma Descriçãoo:  ");
+        descricao = inString("Digite Uma Descrição:  ");
 
         areaTotal = inDouble("Digite a Área Total:  ");
 
@@ -120,29 +128,31 @@ public class MenuTerreno {
 
         dimensaoLado = inDouble("Digite a Dimensão Lado: ");
 
-        Imovel Terreno = new Terreno(logradouro, numero, bairro, cidade,
+        Imovel t = new Terreno(logradouro, numero, bairro, cidade,
                 descricao, areaTotal, valor, dimensaoFrente, dimensaoLado);
 
-        boolean objeto = lista.incluir(Terreno);
-        
+        boolean objeto = lista.incluir(t);
+
         System.out.println("\n\n");
         if (objeto == true) {
             System.out.println("Imóvel incluído com sucesso.");
         } else {
-            System.out.println("Imóvel não foi incluído.");
+            System.out.println("Imóvel não incluído.");
         }
         try {
             lista.escreverArquivo();
         } catch (Exception ex) {
-            Logger.getLogger(MenuSalaComercial.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuTerreno.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     /**
-     * MÃ©todo que recebe uma informação do usuario, e consulta
-     * por código se o objeto esta na listaImoveis.
+     * MÃ©todo que recebe uma informação do usuario, e consulta por código se o
+     * objeto esta na listaImoveis.
      */
     public void Consultar() {
+
+        lista.mostrarLista();
         System.out.println("Digite o Código Que Deseja Consultar: ");
         Imovel Imo = lista.consultar(entrada.nextInt());
         entrada.nextLine();
@@ -153,17 +163,15 @@ public class MenuTerreno {
             System.out.println(Imo.toString());
             System.out.println("=======================================");
 
-
         } else if (Imo == null) {
-            System.out.println("Imóvel Não Cadastrado;");
+            System.out.println("Imóvel Não Cadastrado");
 
         }
     }
-    
-     /**
-     * Método que recebe uma informação do usuario
-     * e consulta por código se o objeto esta na 
-     * listaImoveis para poder executar a exclusao do mesmo.
+
+    /**
+     * Método que recebe uma informação do usuario e consulta por código se o
+     * objeto esta na listaImoveis para poder executar a exclusao do mesmo.
      */
     public void excluirControle() {
         System.out.println(" Digite o Código do Imóvel: ");
@@ -177,7 +185,7 @@ public class MenuTerreno {
             System.out.println("Imóvel Não Encontrado! ");
         }
     }
-    
+
     /**
      * Metodo que edita uma informacao por codigo
      */
@@ -204,16 +212,16 @@ public class MenuTerreno {
                 System.out.println(" \n");
                 System.out.println("O que deseja Editar: ");
                 System.out.println(" \n");
-                System.out.println("[1] Logradouro ");
-                System.out.println("[2] Número ");
-                System.out.println("[3] Bairro ");
-                System.out.println("[4] Cidade ");
-                System.out.println("[5] Descrição ");
-                System.out.println("[6] Área Total ");
-                System.out.println("[7] Valor ");
-                System.out.println("[8] Dimensão Frente ");
-                System.out.println("[9] Dimensão Lado ");
-                System.out.println("[0] Voltar ao Menu Anterior ");  
+                System.out.println("1) Logradouro ");
+                System.out.println("2) Número ");
+                System.out.println("3) Bairro ");
+                System.out.println("4) Cidade ");
+                System.out.println("5) Descrição ");
+                System.out.println("6) Área Total ");
+                System.out.println("7) Valor ");
+                System.out.println("8) Dimensão Frente ");
+                System.out.println("9) Dimensão Lado ");
+                System.out.println("0) Voltar ao Menu Anterior ");
                 System.out.println(" \n");
                 System.out.print("Opção:    ");
                 k = entrada.nextInt();
@@ -289,21 +297,6 @@ public class MenuTerreno {
 
     }
 
-    public void carregarArquivos(){TipoDeImovel tipo;
-        tipo = TipoDeImovel.TERRENO;
-        String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
-        lista = new ListaDeImoveis(caminho, tipo);
-        
-        lista.setCaminho(caminho);
-      
-        if(lista.lerArquivo()==true){
-            System.out.println("Arquivos Carregados ");
-        }else {
-            System.out.println("Arquivo não Iniciados ");
-        }
-    
-    }
-
     public void menuInicial() {
         int i;
 
@@ -362,20 +355,20 @@ public class MenuTerreno {
                             List imovel = lista.pesquisaBairro(s);
                             System.out.println(imovel.toString());
                             break;
-                            
+
                         case 2:
                             double d = inDouble(" Informe o Valor:  ");
                             List imo = lista.pesquisaValor(d);
                             System.out.println(imo.toString());
-                            
+
                             break;
 
                         default:
                             break;
 
                     }
-                   break;
-                   
+                    break;
+
                 case 6:
                     List<Imovel> aux;
                     MenuTerreno.menu4();
@@ -384,20 +377,20 @@ public class MenuTerreno {
 
                     switch (opcao) {
                         case 1:
-                            aux= lista.ordenarArea();
+                            aux = lista.ordenarArea();
                             System.out.println(aux.toString());
-                            
+
                             break;
-                            
+
                         case 2:
-                            aux= lista.ordenarCodigo();
-                            System.out.println(aux.toString());                          
+                            aux = lista.ordenarCodigo();
+                            System.out.println(aux.toString());
                             break;
-                            
+
                         case 3:
                             aux = lista.ordenarValor();
                             System.out.println(aux.toString());
-                            
+
                             break;
                         default:
                             break;

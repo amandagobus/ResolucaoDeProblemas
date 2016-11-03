@@ -51,7 +51,7 @@ public class Casa extends Residencia {
      * @param valor
      * @param areaConstruida
      * @param numeroQuartos
-     * @param anoConstucao
+     * @param anoConstrucao
      * @param tipo
      * @param numeroDeVagas 
      */
