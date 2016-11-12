@@ -44,6 +44,8 @@ public class MenuApartamento {
 
     }
     
+    //<editor-fold defaultstate="collapsed" desc="menuInicial">
+    
 
     /**
      * Método chamado menu, que exibe as opções Novo Imóvel e Consultar
@@ -103,7 +105,9 @@ public class MenuApartamento {
         } while (opcao != 0);
 
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Menu2">
     public static void menu2() {
         System.out.println("=================================================");
         System.out.println("===============SELECIONE UMA OPÇÃO===============");
@@ -112,9 +116,9 @@ public class MenuApartamento {
         System.out.println("");
 
     }
-
+    //</editor-fold>
     
-
+    //<editor-fold defaultstate="collapsed" desc="IncluirImovel">
     /**
      * Método de Incluir um novo Imóvel
      */
@@ -185,7 +189,9 @@ public class MenuApartamento {
             System.out.println("Imóvel não foi incluido.");
         }
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Consultar">
     /**
      * Método que consulta o imóvel por código
      */
@@ -208,8 +214,10 @@ public class MenuApartamento {
         }
 
     }
-
-    private int mostrarLista(List<Imovel> lista) {
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="mostrarLista">
+     private int mostrarLista(List<Imovel> lista) {
         int imovelCod;
         div();
         for (Imovel imovel : lista) {
@@ -218,9 +226,9 @@ public class MenuApartamento {
         div();
         return inInt("Digite o código do imóvel: ");
     }
-
+    //</editor-fold>
    
-
+    //<editor-fold defaultstate="collapsed" desc="Ordenar">
     /**
      * Método de ordenar
      */
@@ -257,7 +265,9 @@ public class MenuApartamento {
                 System.out.println("Opção Inválida ");
         }
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Editar">
     /**
      * Método que Edita um imóvel utilizando o codigo
      */
@@ -357,7 +367,9 @@ public class MenuApartamento {
         }
 
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Excluir">
     /**
      * Método que exclui por código
      */
@@ -368,5 +380,6 @@ public class MenuApartamento {
         lista.excluir(codigo);
 
     }
+    //</editor-fold>
    
 }
