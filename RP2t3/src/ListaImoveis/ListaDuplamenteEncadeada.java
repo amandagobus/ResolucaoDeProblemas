@@ -18,19 +18,17 @@ import java.util.logging.Logger;
  */
 public class ListaDuplamenteEncadeada implements List {
 
-
     private No ultimo = null;
     private No inicio = null;
     private No aux;
-    private int indice=0, size=0;
-    
-    
-     /**
+    private int indice = 0, size = 0;
+
+    /**
      * Método que pega o último Imovel da lista e retorna ele
      *
      * @return imovel
      */
-    private Imovel getLast() {
+    public Imovel getLast() {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
@@ -40,64 +38,64 @@ public class ListaDuplamenteEncadeada implements List {
 
     /**
      * Método que adiciona um imovel na lista
+     *
      * @param e
-     * @return 
+     * @return
      */
     @Override
     public boolean add(Object e) {
-        Imovel im = (Imovel)e;
-        if(!this.isEmpty()){
-          aux = new No(indice,im,inicio,ultimo); 
-          this.ultimo.setProximo(aux);
-          this.ultimo=aux;
-          this.inicio.setAnterior(ultimo);
-        }else{
-            this.inicio= new No(indice,im,inicio,inicio);
+        Imovel im = (Imovel) e;
+        if (!this.isEmpty()) {
+            aux = new No(indice, im, inicio, ultimo);
+            this.ultimo.setProximo(aux);
+            this.ultimo = aux;
+            this.inicio.setAnterior(ultimo);
+        } else {
+            this.inicio = new No(indice, im, inicio, inicio);
             this.inicio.setAnterior(inicio);
             this.inicio.setProximo(inicio);
-            this.ultimo=inicio;
+            this.ultimo = inicio;
         }
-           
-            this.indice++;
-            this.size++;
-            return true;
+
+        this.indice++;
+        this.size++;
+        return true;
     }
-  
+
     /**
      * Método que remove um imovel da lista
+     *
      * @param o
-     * @return 
+     * @return
      */
     @Override
     public boolean remove(Object o) {
-       Imovel im =(Imovel)o;
-       if (this.isEmpty()) {
+        Imovel im = (Imovel) o;
+        if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
-           aux=this.inicio;
-           while(aux != this.ultimo){
-               Imovel i=(Imovel)aux.getImovel();
-               if(i.getCodigo() == im.getCodigo()){
-                   break;
-               }
-               aux = aux.getProximo();
-           }
-           if(this.aux != this.ultimo){
-               No anterior = aux.getAnterior();
-               No proximo = aux.getProximo();
-               anterior.setProximo(proximo);
-               proximo.setAnterior(anterior);
-               this.size--;
-               this.decrementarLista(proximo);
-               return true;
-           }else{
-               return false;
-           }
-       }
-       
-        
-    }
+            aux = this.inicio;
+            while (aux != this.ultimo) {
+                Imovel i = (Imovel) aux.getImovel();
+                if (i.getCodigo() == im.getCodigo()) {
+                    break;
+                }
+                aux = aux.getProximo();
+            }
+            if (this.aux != this.ultimo) {
+                No anterior = aux.getAnterior();
+                No proximo = aux.getProximo();
+                anterior.setProximo(proximo);
+                proximo.setAnterior(anterior);
+                this.size--;
+                this.decrementarLista(proximo);
+                return true;
+            } else {
+                return false;
+            }
+        }
 
+    }
 
     @Override
     public int size() {
@@ -206,51 +204,47 @@ public class ListaDuplamenteEncadeada implements List {
 
     /**
      * Método que decrementa a Lista
-     * @param n 
+     *
+     * @param n
      */
-    private void decrementarLista(No n){
-        if(this.size == 1){
-            this.ultimo=inicio;
+    private void decrementarLista(No n) {
+        if (this.size == 1) {
+            this.ultimo = inicio;
         }
         this.indice--;
         No aux = n;
-        while(aux != this.ultimo){
+        while (aux != this.ultimo) {
             aux.decrementarIndice();
-            aux=aux.getProximo();
+            aux = aux.getProximo();
         }
         aux.decrementarIndice();
-    } 
+    }
+
     /**
      * Método que incrementa a Lista
-     * @param n 
+     *
+     * @param n
      */
-    private void incrementarLista(No n){
+    private void incrementarLista(No n) {
         this.indice++;
         No aux = n;
-        while(aux != this.ultimo){
+        while (aux != this.ultimo) {
             aux.IncrementarIndice();
-            aux=aux.getProximo();
+            aux = aux.getProximo();
         }
         aux.decrementarIndice();
-            
-    } 
-    
-    public boolean existeImovel(Imovel im){
-        No aux1= this.inicio;
-        while(aux1 !=this.ultimo){
-            Imovel i=(Imovel)aux1.getImovel();
-             if(i.getCodigo()== im.getCodigo()){
-                 return true;
-             }
-             aux1 =aux1.getProximo();
+
+    }
+
+    public boolean existeImovel(Imovel im) {
+        No aux1 = this.inicio;
+        while (aux1 != this.ultimo) {
+            Imovel i = (Imovel) aux1.getImovel();
+            if (i.getCodigo() == im.getCodigo()) {
+                return true;
+            }
+            aux1 = aux1.getProximo();
         }
         return false;
-    }    
     }
-    
-    
-    
-    
-    
-    
-
+}
