@@ -14,11 +14,24 @@ import java.util.ListIterator;
  *
  * @author Amanda Gobus
  */
-public class ListaLigadaDuplamente implements List {
-    private No ultimo = null;
-    private No inicio = null;
-    
-
+public class ListaDuplamenteEncadeada implements List {
+     private No ultimo = null;
+     private No inicio = null;
+     
+     
+     
+     
+     
+     private No getLast(){
+         if(this.isEmpty()){
+             throw new IllegalArgumentException("Lista vazia");
+         }else{
+             return ultimo;
+         }
+     } 
+     
+   
+             
     @Override
     public int size() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -48,23 +61,18 @@ public class ListaLigadaDuplamente implements List {
     public Object[] toArray(Object[] ts) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//Amanda
+
     @Override
     public boolean add(Object e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//Amanda
+
     @Override
     public boolean remove(Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean addAll(int i, Collection clctn) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-        @Override
     public boolean containsAll(Collection clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -73,6 +81,12 @@ public class ListaLigadaDuplamente implements List {
     public boolean addAll(Collection clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public boolean addAll(int i, Collection clctn) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     @Override
     public boolean removeAll(Collection clctn) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -87,7 +101,6 @@ public class ListaLigadaDuplamente implements List {
     public void clear() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
     @Override
     public Object get(int i) {
