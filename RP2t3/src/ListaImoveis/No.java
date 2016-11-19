@@ -16,6 +16,13 @@ public class No {
     private Imovel imovel;
     private int indice;
 
+    /**
+     * Construtor do No
+     * @param indice
+     * @param im
+     * @param inicio
+     * @param ultimo 
+     */
    public No(int indice, Imovel im, No inicio, No ultimo) {
        this.indice=indice;
        this.imovel=imovel;
@@ -25,15 +32,24 @@ public class No {
 
     
 
-
+/**
+ * Método set do Imóvel
+ * @param imovel 
+ */
     public void setImovel(Imovel imovel) {
         this.imovel = imovel;
     }
-
+/**
+ * Método get do Imóvel
+ * @return 
+ */
     public Imovel getImovel() {
         return imovel;
     }
-
+/**
+ * 
+ * @return 
+ */
     public No getProximo() {
         return proximo;
     }
