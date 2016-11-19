@@ -5,6 +5,8 @@
  */
 package ListaImoveis;
 
+import Imovel.Imovel;
+
 /**
  *
  * @author Amanda Gobus
@@ -12,6 +14,15 @@ package ListaImoveis;
 public class No {
     private No proximo;
     private No anterior;
+    private Imovel imovel;
+
+    public void setImovel(Imovel imovel) {
+        this.imovel = imovel;
+    }
+
+    public Imovel getImovel() {
+        return imovel;
+    }
 
     public No getProximo() {
         return proximo;
@@ -29,13 +40,5 @@ public class No {
         this.anterior = anterior;
     }
 
-    public Object getInfo() {
-        return info;
-    }
-
-    public void setInfo(Object info) {
-        this.info = info;
-    }
-    private Object info;
     
 }

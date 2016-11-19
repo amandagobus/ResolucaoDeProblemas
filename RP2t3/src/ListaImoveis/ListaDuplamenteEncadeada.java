@@ -5,6 +5,7 @@
  */
 package ListaImoveis;
 
+import Imovel.Imovel;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -21,12 +22,15 @@ public class ListaDuplamenteEncadeada implements List {
      
      
      
-     
-     private No getLast(){
+     /**
+      * Método que pega o último Imovel e retorna ele
+      * @return imovel
+      */
+     private Imovel getLast(){
          if(this.isEmpty()){
              throw new IllegalArgumentException("Lista vazia");
          }else{
-             return ultimo;
+             return ultimo.getImovel();
          }
      } 
      
