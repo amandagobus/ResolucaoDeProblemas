@@ -244,15 +244,4 @@ public class ListaDuplamenteEncadeada implements List {
 
     }
 
-    public boolean existeImovel(Imovel im) {
-        No aux1 = this.inicio;
-        while (aux1 != this.ultimo) {
-            Imovel i = (Imovel) aux1.getImovel();
-            if (i.getCodigo() == im.getCodigo()) {
-                return true;
-            }
-            aux1 = aux1.getProximo();
-        }
-        return false;
-    }
 }
