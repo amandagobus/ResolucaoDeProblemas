@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,11 +18,12 @@ import java.util.ListIterator;
  */
 public class ListaDuplamenteEncadeada implements List {
 
+
     private No ultimo = null;
     private No inicio = null;
     private No aux;
     private int indice=0, size=0;
-
+    
     
      /**
      * Método que pega o último Imovel da lista e retorna ele
@@ -37,7 +39,7 @@ public class ListaDuplamenteEncadeada implements List {
     }
 
     /**
-     * 
+     * Método que adiciona um imovel na lista
      * @param e
      * @return 
      */
@@ -55,34 +57,51 @@ public class ListaDuplamenteEncadeada implements List {
             this.inicio.setProximo(inicio);
             this.ultimo=inicio;
         }
-           this.indice++;
-           this.size++;
-           return true;
-         
+           
+            this.indice++;
+            this.size++;
+            return true;
     }
   
     /**
-     * 
+     * Método que remove um imovel da lista
      * @param o
      * @return 
      */
     @Override
     public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       Imovel im =(Imovel)o;
+       if (this.isEmpty()) {
+            throw new IllegalArgumentException("Lista vazia");
+        } else {
+           aux=this.inicio;
+           while(aux != this.ultimo){
+               Imovel i=(Imovel)aux.getImovel();
+               if(i.getCodigo() == im.getCodigo()){
+                   break;
+               }
+               aux = aux.getProximo();
+           }
+           if(this.aux != this.ultimo){
+               No anterior = aux.getAnterior();
+               No proximo = aux.getProximo();
+               anterior.setProximo(proximo);
+               proximo.setAnterior(anterior);
+               this.size--;
+               this.decrementarLista(proximo);
+               return true;
+           }else{
+               return false;
+           }
+       }
+       
+        
     }
 
-    
-   
-    
-   
-    
-    
-    
-    
-    
+
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.size;
     }
 
     @Override
@@ -216,7 +235,17 @@ public class ListaDuplamenteEncadeada implements List {
             
     } 
     
-        
+    public boolean existeImovel(Imovel im){
+        No aux1= this.inicio;
+        while(aux1 !=this.ultimo){
+            Imovel i=(Imovel)aux1.getImovel();
+             if(i.getCodigo()== im.getCodigo()){
+                 return true;
+             }
+             aux1 =aux1.getProximo();
+        }
+        return false;
+    }    
     }
     
     
