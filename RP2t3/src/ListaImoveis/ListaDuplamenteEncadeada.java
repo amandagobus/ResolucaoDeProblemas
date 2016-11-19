@@ -18,11 +18,19 @@ import java.util.logging.Logger;
  */
 public class ListaDuplamenteEncadeada implements List {
 
-    private No ultimo = null;
-    private No inicio = null;
+    private No ultimo ;
+    private No inicio ;
     private No aux;
-    private int indice = 0, size = 0;
+    private int indice , size ;
 
+    public ListaDuplamenteEncadeada() {
+     this.ultimo = null;
+     this.inicio = null;
+     this.indice = 0;
+     this.size = 0;
+    }
+    
+    
     /**
      * Método que pega o último Imovel da lista e retorna ele
      *
@@ -75,14 +83,14 @@ public class ListaDuplamenteEncadeada implements List {
             throw new IllegalArgumentException("Lista vazia");
         } else {
             aux = this.inicio;
-            while (aux != this.ultimo) {
+            while (aux != this.inicio) {
                 Imovel i = (Imovel) aux.getImovel();
                 if (i.getCodigo() == im.getCodigo()) {
                     break;
                 }
                 aux = aux.getProximo();
             }
-            if (this.aux != this.ultimo) {
+            if (this.aux != this.inicio) {
                 No anterior = aux.getAnterior();
                 No proximo = aux.getProximo();
                 anterior.setProximo(proximo);
