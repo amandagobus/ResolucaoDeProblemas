@@ -8,7 +8,8 @@ package Terreno;
 import Imovel.Imovel;
 
 /**
- * Classe para objetos do tipo Terreno, onde serÃ£o contidos valores e mÃ©todos para o mesmo.
+ * Classe para objetos do tipo Terreno, onde serao contidos valores e metodos para o mesmo.
+ * 
  * @author Julielen
  */
 public class Terreno extends Imovel {
