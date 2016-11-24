@@ -6,11 +6,12 @@
 package ListaImoveis;
 
 import Imovel.Imovel;
+import java.io.Serializable;
 /**
  *
  * @author Amanda Gobus
  */
-public class No {
+public class No implements Serializable{
     private No proximo;
     private No anterior;
     private Imovel imovel;

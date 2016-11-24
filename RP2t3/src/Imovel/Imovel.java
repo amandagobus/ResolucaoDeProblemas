@@ -5,11 +5,13 @@
  */
 package Imovel;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Arcano
  */
-public abstract class Imovel {
+public abstract class Imovel implements Serializable{
 
     protected static int codigoGeral = 1;
     protected int codigo;
