@@ -17,15 +17,21 @@ import java.util.List;
 import Imovel.ListaImoveis;
 import Imovel.Tipo;
 import Imovel.TipoDeImovel;
+import Menu.MenuApartamento;
+import Menu.MenuCasa;
 import Terreno.Terreno;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,75 +45,15 @@ public class ListaDeImoveis implements ListaImoveis {
     private TipoDeImovel tipo;
     private String caminho;
 
-
-public ListaDeImoveis(String caminho, TipoDeImovel tipo){
-    lista = new ArrayList<>();
-    this.caminho = caminho;
-    this.tipo = tipo;
-}
-    /**
-     * @return the caminho
-     */
-    public String getCaminho() {
-        return caminho;
-    }
-
-    /**
-     * @param caminho the caminho to set
-     */
-    public void setCaminho(String caminho) {
+    public ListaDeImoveis(String caminho, TipoDeImovel tipo) {
+        lista = new ArrayList<>();
         this.caminho = caminho;
+        this.tipo = tipo;
     }
 
-    public TipoDeImovel getTipo() {
-        return tipo;
-
-    }
-
-    @Override
-    public boolean incluir(Imovel im) {
-        lista.add(im);
-        return true;
-    }
-
-    @Override
-    public Imovel consultar(int codigo) {
-
-        for (Imovel imovel : lista) {
-            if (codigo == imovel.getCodigo()) {
-                return imovel;
-            }
-        }
-        return null;
-
-    }
-
-    @Override
-    public boolean editar(int codigo, Imovel imo) {
-
-        for (Imovel imovel : lista) {
-            if (imovel.getCodigo() == codigo) {
-                int indice = this.lista.indexOf(imovel);
-                this.lista.set(indice, imo);
-                return true;
-            }
-
-        }
-        return false;
-    }
-
-    @Override
-    public boolean excluir(int codigo) {
-        Imovel imo = this.consultar(codigo);
-        if (imo != null) {
-            lista.remove(imo);
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    /**
+    //<editor-fold defaultstate="collapsed" desc="Métodos De Ordenar">
+  
+     /**
      * Método que Ordena por código, o método cria uma nova lista aux e a deixa
      * ordenada
      *
@@ -153,19 +99,18 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return aux;
     }
-    
+
     public void mostrarLista() {
-        
+
         div();
         for (Imovel imovel : lista) {
-            System.out.println("CODIGO:   "+ imovel.getCodigo()+ "    " 
-                    + " LOGRADOURO:   " + imovel.getLogradouro()+"    "
+            System.out.println("CODIGO:   " + imovel.getCodigo() + "    "
+                    + " LOGRADOURO:   " + imovel.getLogradouro() + "    "
                     + " VALOR:   " + imovel.getValor());
         }
         div();
-       
-    }
 
+    }
 
     @Override
     public List<Imovel> ordenarArea() {
@@ -186,8 +131,12 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return aux;
     }
-
-    /**
+    
+    
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Métodos De Pesquisar">
+        /**
      * Metodo que pesquisa um Imovel pelo valor
      *
      * @param valor, informado pelo usuario
@@ -222,7 +171,79 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         return l;
 
     }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Incluir,Editar,Consultar e Excluir">
+      @Override
+    public boolean incluir(Imovel im) {
+        lista.add(im);
+        return true;
+    }
 
+    @Override
+    public Imovel consultar(int codigo) {
+
+        for (Imovel imovel : lista) {
+            if (codigo == imovel.getCodigo()) {
+                return imovel;
+            }
+        }
+        return null;
+
+    }
+
+    @Override
+    public boolean editar(int codigo, Imovel imo) {
+
+        for (Imovel imovel : lista) {
+            if (imovel.getCodigo() == codigo) {
+                int indice = this.lista.indexOf(imovel);
+                this.lista.set(indice, imo);
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    @Override
+    public boolean excluir(int codigo) {
+        Imovel imo = this.consultar(codigo);
+        if (imo != null) {
+            lista.remove(imo);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+   
+    
+    //</editor-fold>
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="Caminho">
+    /**
+     * @return the caminho
+     */
+    public String getCaminho() {
+        return caminho;
+    }
+
+    /**
+     * @param caminho the caminho to set
+     */
+    public void setCaminho(String caminho) {
+        this.caminho = caminho;
+    }
+
+    public TipoDeImovel getTipo() {
+        return tipo;
+
+    }
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Ler/Escrever Imóveis">
     @Override
     public boolean escreverArquivo() {
 
@@ -456,7 +477,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         return false;
     }
 
-    /*
+    
     public boolean gravarApartamento() {
 
         try {
@@ -503,7 +524,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return false;
     }
-     */
+     
     public boolean lerCasa() throws FileNotFoundException, IOException {
 
         File file = new File(caminho);
@@ -562,7 +583,7 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return false;
     }
-
+    
     /*
     *Método que cria um arquivo e grava o imovel terreno
      */
@@ -631,4 +652,43 @@ public ListaDeImoveis(String caminho, TipoDeImovel tipo){
         }
         return false;
     }
+
+//</editor-fold>
+  
+   //<editor-fold defaultstate="collapsed" desc="Ler e Escrita Binária">
+    
+
+    public boolean escreverArquivoBin() {
+
+        try {
+
+            ObjectOutput output = new ObjectOutputStream(new FileOutputStream(caminho));
+
+            output.writeObject(lista);
+
+            output.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(ListaDeImoveis.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+
+        }
+        return false;
+    }
+
+    public boolean lerApartamentoBin() throws FileNotFoundException, IOException, ClassNotFoundException {
+
+        ObjectInputStream input;
+
+        input = new ObjectInputStream(new FileInputStream(new File(caminho)));
+        this.lista = (List<Imovel>) input.readObject();
+
+        input.close();
+
+        return true;
+    }
+    //</editor-fold>
+   
+
+
 }

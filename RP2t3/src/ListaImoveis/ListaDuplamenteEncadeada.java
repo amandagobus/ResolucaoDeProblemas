@@ -6,10 +6,19 @@
 package ListaImoveis;
 
 import Imovel.Imovel;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -22,6 +31,7 @@ public class ListaDuplamenteEncadeada implements List {
     private No inicio ;
     private No aux;
     private int indice , size ;
+    private List<Imovel> lista;
 
     public ListaDuplamenteEncadeada() {
      this.ultimo = null;
@@ -29,6 +39,12 @@ public class ListaDuplamenteEncadeada implements List {
      this.indice = 0;
      this.size = 0;
     }
+    
+    
+        
+    
+   
+    
     
     
     /**
