@@ -27,26 +27,19 @@ import java.util.logging.Logger;
  */
 public class ListaDuplamenteEncadeada implements List {
 
-    private No ultimo ;
-    private No inicio ;
+    private No ultimo;
+    private No inicio;
     private No aux;
-    private int indice , size ;
+    private int indice, size;
     private List<Imovel> lista;
 
     public ListaDuplamenteEncadeada() {
-     this.ultimo = null;
-     this.inicio = null;
-     this.indice = 0;
-     this.size = 0;
+        this.ultimo = null;
+        this.inicio = null;
+        this.indice = 0;
+        this.size = 0;
     }
-    
-    
-        
-    
-   
-    
-    
-    
+
     /**
      * Método que pega o último Imovel da lista e retorna ele
      *
@@ -98,15 +91,17 @@ public class ListaDuplamenteEncadeada implements List {
         if (this.isEmpty()) {
             throw new IllegalArgumentException("Lista vazia");
         } else {
+            Imovel i = null;
             aux = this.inicio;
-            while (aux != this.inicio) {
-                Imovel i = (Imovel) aux.getImovel();
+            while (aux != this.ultimo) {
+                i = (Imovel) aux.getImovel();
                 if (i.getCodigo() == im.getCodigo()) {
                     break;
                 }
                 aux = aux.getProximo();
             }
-            if (this.aux != this.inicio) {
+            i = (Imovel) aux.getImovel();
+            if (i.getCodigo() == im.getCodigo()) {
                 No anterior = aux.getAnterior();
                 No proximo = aux.getProximo();
                 anterior.setProximo(proximo);
@@ -183,7 +178,15 @@ public class ListaDuplamenteEncadeada implements List {
 
     @Override
     public Object get(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (inicio != null) {
+            No aux = inicio;
+            while (aux.getIndice() != i) {
+                aux = aux.getProximo();
+            }
+            return aux.getImovel();
+        } else {
+            return null;
+        }
     }
 
     @Override

@@ -12,7 +12,10 @@ import static Imovel.EntradasTeclado.inInt;
 import static Imovel.EntradasTeclado.inString;
 import Imovel.Imovel;
 import Imovel.TipoDeImovel;
+import ListaImoveis.ListaDuplamenteEncadeada;
 import ListaImoveis.ListaDeImoveis;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -27,23 +30,23 @@ public class MenuApartamento {
     Apartamento apartamento;
     ListaDeImoveis lista;
     private List<Imovel> ListaOrdenada;
-    private int codigoImovel;
+    private int codigoImovel, codigo;
     Scanner entrada = new Scanner(System.in);
     
-    public MenuApartamento() {
+    public MenuApartamento(){
         TipoDeImovel tipo;
         tipo = TipoDeImovel.APARTAMENTO;
         String caminho = System.getProperty("user.dir") + System.getProperty("file.separator") + tipo + ".csv";
         lista = new ListaDeImoveis(caminho, tipo);
         
-        if (lista.lerArquivo() == true) {
+        if (lista.lerApartamentoBin() == true) {
             System.out.println("Arquivos carregados");
         } else {
             System.out.println("Arquivo não iniciados");
         }
 
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="menuInicial">
     
 
@@ -178,7 +181,7 @@ public class MenuApartamento {
 
         boolean objeto = lista.incluir(apartamento);
         try {
-            lista.escreverArquivo();
+            lista.escreverArquivoBin();
         } catch (Exception ex) {
             Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -357,7 +360,7 @@ public class MenuApartamento {
             
             lista.editar(codigo, apartamento);
             try {
-                lista.escreverArquivo();
+                lista.escreverArquivoBin();
             } catch (Exception ex) {
                 Logger.getLogger(MenuApartamento.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -374,11 +377,16 @@ public class MenuApartamento {
      * Método que exclui por código
      */
     public void Excluir() {
-        System.out.println("Digite o código do imóvel que você deseja excluir:  ");
-        int codigo = entrada.nextInt();
-        entrada.nextLine();
-        lista.excluir(codigo);
+         System.out.println(" DIGITE O CODIGO DO IMÓVEL: ");
+        boolean objeto = lista.excluir(entrada.nextInt());
+        if (objeto == true) {
 
+            System.out.println("IMÓVEL EXCLUIDO");
+            lista.escreverArquivoBin();
+        } else {
+
+            System.out.println("IMÓVEL NÃO ENCONTRADO");
+        }
     }
     //</editor-fold>
    

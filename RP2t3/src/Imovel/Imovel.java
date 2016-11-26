@@ -13,7 +13,7 @@ import java.io.Serializable;
  */
 public abstract class Imovel implements Serializable{
 
-    protected static int codigoGeral = 1;
+    protected static int codigoGeral = 0;
     protected int codigo;
     protected String logradouro;
     protected int numero;
@@ -26,7 +26,7 @@ public abstract class Imovel implements Serializable{
     public Imovel(int codigo, String logradouro, int numero, String bairro,
             String cidade, String descricao, double areaTotal, double valor) {
         this.codigo = codigo;
-        this.codigoGeral = 1 + codigo;
+        this.codigoGeral = codigo++;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;

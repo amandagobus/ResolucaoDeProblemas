@@ -47,6 +47,18 @@ public class No implements Serializable{
     public Imovel getImovel() {
         return imovel;
     }
+
+    public int getIndice() {
+        return indice;
+    }
+
+    public void setIndice(int indice) {
+        this.indice = indice;
+    }
+    
+    
+    
+    
 /**
  * 
  * @return 
